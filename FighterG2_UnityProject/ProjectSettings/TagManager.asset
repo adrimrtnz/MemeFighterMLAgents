@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Saliente
+  - Pared
+  - Techo
   layers:
   - Default
   - TransparentFX
