@@ -237,7 +237,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 100
   hp: 0
-  controladorGeneral: {fileID: 0}
+  atk: 0
+  def: 0
+  vel: 0
+  controladorGeneral: {fileID: 1028818058}
 --- !u!4 &578700355
 Transform:
   m_ObjectHideFlags: 0
@@ -263,7 +266,7 @@ GameObject:
   - component: {fileID: 702134174}
   - component: {fileID: 702134173}
   m_Layer: 0
-  m_Name: Player2
+  m_Name: Player2 (temporal)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -283,7 +286,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 100
   hp: 0
-  controladorGeneral: {fileID: 0}
+  atk: 0
+  def: 0
+  vel: 0
+  controladorGeneral: {fileID: 1028818058}
 --- !u!4 &702134174
 Transform:
   m_ObjectHideFlags: 0
