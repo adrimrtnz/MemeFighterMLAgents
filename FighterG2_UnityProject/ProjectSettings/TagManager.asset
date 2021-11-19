@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Saliente
   - Pared
+  - Saliente
   - Techo
   layers:
   - Default

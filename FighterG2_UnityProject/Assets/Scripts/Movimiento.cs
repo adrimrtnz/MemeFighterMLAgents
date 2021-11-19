@@ -13,27 +13,28 @@ public class Movimiento : MonoBehaviour
     public int saltostotales = 2;
     private bool canJump = true;
     public float stiempo = 0.3f;
-    public bool mirandoderecha = true;
-    public bool jumpared = false;
-
 
     [Header("Movimiento")]
     public float velocidad;
+    public bool pared;
+    public float gpared;
+    public bool mirandoderecha=true;
+    public float gravedad;
+    public float diagonal = 1f;
 
     [Header("Varios")]
-    public Controls1 Input1;
-    public Rigidbody2D rb;
+    private Controls1 Input1;
+    private Rigidbody2D rb;
 
-    public string currentControlScheme { get; }
     void Start()///////////////////////////////////////COSAS QUE SE EJECUTAN AL EMPEZAR//////////////////////////////////////////////
     {
         rb = GetComponent<Rigidbody2D>();
+        gravedad = rb.gravityScale;
     }
 
-    void FixedUpdate() ///////////////////////////////////////COSAS QUE SE EJECUTAN EN CADA  0.02 segundos///////////////////////////////////////////////
+    void FixedUpdate() ///////////////////////////////////////COSAS QUE SE EJECUTAN EN CADA FRAME///////////////////////////////////////////////
     {
-       
-        
+
         Move();
     }
 
@@ -41,48 +42,45 @@ public class Movimiento : MonoBehaviour
 
     private void Move()         ///////////MOVERSE
     {
-        float mve= Input1.Player1.Move.ReadValue<float>(); ;
-       
-        Vector2 x = new Vector2(mve, 0f);
-        rb.AddForce(x * velocidad, ForceMode2D.Force);
-        if (mve > 0 && mirandoderecha == false)
+        float mve = Input1.Player1.Move.ReadValue<float>();
+        if (mirandoderecha ==true && mve < 0)
         {
-            transform.Rotate(0.0f, 180.0f,  0.0f, Space.World);
-            mirandoderecha = true;
-        }
-        else if ( mve<0 && mirandoderecha == true)
-        {
-            transform.Rotate(0.0f, -180.0f,  0.0f, Space.World);
+            transform.Rotate(0f, 180f, 0f, Space.World);
             mirandoderecha = false;
         }
+        else if (mirandoderecha == false && mve > 0)
+        {
+            transform.Rotate(0f, -180f, 0f, Space.World);
+            mirandoderecha = true;
+        }           
+        Vector2 x = new Vector2(mve, 0f);
+        rb.AddForce(x * velocidad, ForceMode2D.Force);
 
     }
     private void Jump(InputAction.CallbackContext c)///////////////////////////SALTAR//////////////////////////////////////////////////////
     {
-        Vector2 saltito = new Vector2();
-        float salt = Input1.Player1.Jump.ReadValue<float>(); ;
+        float salto = Input1.Player1.Jump.ReadValue<float>();
+        Vector2 saltito;
         if (nsaltos < saltostotales && canJump == true)
         {
-            if (salt > 0.5f)
+            if (salto > 0.5f)
             {
-               if(jumpared==true)
-                {
-                    if (mirandoderecha==true)
-                        saltito = new Vector2(-0.5f, 1f);
-                    else
+                saltito = new Vector2(0f, 1f);
+                if (pared){
+                    if (mirandoderecha )
                     {
-                        saltito = new Vector2(0.5f, 1f);
+                        saltito = new Vector2(-diagonal, 1f);
                     }
-                            
+                    else 
+                    {
+                        saltito = new Vector2(diagonal, 1f);
+                    }
+                
                 }
-                else{
-                    saltito = new Vector2(0f, 1f);
-                    
-                }
-                rb.AddForce(saltito * fuerzasalto, ForceMode2D.Impulse);
+                
+                rb.AddForce(saltito * fuerzasalto, ForceMode2D.Force);
                 nsaltos = nsaltos + 1;
                 DisableS(stiempo);
-
             }
         }
 
@@ -104,34 +102,28 @@ public class Movimiento : MonoBehaviour
     {
 
     }
-
-    private void StartB(InputAction.CallbackContext c)////////////////////ESPECIAL//////////////////////////////////////////////////////
-    {
-
-    }
     ///////////////////////////                          HASTA AQUI VAN LAS ACCIONES AAAAAAAAAAAAAA                     //////////////////////////
 
     private void OnCollisionEnter2D(Collision2D collision) ///////////DETECTA COLISIONES/////////////////////////////////////////////////
     {
-        if (collision.collider.tag == "Ground"|| collision.collider.tag == "Pared")
+        if (collision.collider.tag == "Ground" || collision.collider.tag == "Pared")
         {
             nsaltos = 0;
-        }
-        if(collision.collider.tag == "Pared")
-        {
-            rb.gravityScale = 5f;
-            velocidad = velocidad / 2;
-            jumpared = true;
+            if (collision.collider.tag == "Pared")
+            {
+                rb.gravityScale = gpared;
+                pared = true;
+            }
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider.tag == "Pared")
         {
-            rb.gravityScale = 10f;
-            velocidad = velocidad * 2;
-            jumpared = false;
+            rb.gravityScale = gravedad ;
+            pared = false;
         }
+
     }
 
 
@@ -148,26 +140,21 @@ public class Movimiento : MonoBehaviour
     public void Awake()//////////////////////////////////COSAS DEL INPUT QUE TAMPOCO ENTIENDO DEMASIADO Y MEJOR NO TOCAR P2//////////////////////////
     {
         Input1 = new Controls1();
-
-            Input1.Player1.Jump.started += Jump;
-            Input1.Player1.Jump.performed += Jump;
-            Input1.Player1.Jump.canceled += Jump;
-            Input1.Player1.Crouch.started += Crouch;
-            Input1.Player1.Crouch.performed += Crouch;
-            Input1.Player1.Crouch.canceled += Crouch;
-            Input1.Player1.Punch.started += Punch;
-            Input1.Player1.Punch.performed += Punch;
-            Input1.Player1.Punch.canceled += Punch;
-            Input1.Player1.PunchE.started += PunchE;
-            Input1.Player1.PunchE.performed += PunchE;
-            Input1.Player1.PunchE.canceled += PunchE;
-            Input1.Player1.PunchF.started += PunchF;
-            Input1.Player1.PunchF.performed += PunchF;
-            Input1.Player1.PunchF.canceled += PunchF;
-            Input1.Player1.StartB.started += StartB;
-            Input1.Player1.StartB.performed += StartB;
-            Input1.Player1.StartB.canceled += StartB;
-        
+        Input1.Player1.Jump.started += Jump;
+        Input1.Player1.Jump.performed += Jump;
+        Input1.Player1.Jump.canceled += Jump;
+        Input1.Player1.Crouch.started += Crouch;
+        Input1.Player1.Crouch.performed += Crouch;
+        Input1.Player1.Crouch.canceled += Crouch;
+        Input1.Player1.Punch.started += Punch;
+        Input1.Player1.Punch.performed += Punch;
+        Input1.Player1.Punch.canceled += Punch;
+        Input1.Player1.PunchE.started += PunchE;
+        Input1.Player1.PunchE.performed += PunchE;
+        Input1.Player1.PunchE.canceled += PunchE;
+        Input1.Player1.PunchF.started += PunchF;
+        Input1.Player1.PunchF.performed += PunchF;
+        Input1.Player1.PunchF.canceled += PunchF;
     }
     public void OnEnable()//////////////////////COSAS RARAS DEL INPUT QUE TAMPOCO ENTIENDO DEMASIADO Y MEJOR NO TOCAR P2////////////////////////////
     {
