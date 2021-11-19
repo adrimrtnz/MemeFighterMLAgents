@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Movimiento : MonoBehaviour
+public class Movimiento2 : MonoBehaviour
 {
     [SerializeField]
 
@@ -18,7 +18,7 @@ public class Movimiento : MonoBehaviour
     public float velocidad;
     public bool pared;
     public float gpared;
-    public bool mirandoderecha=true;
+    public bool mirandoderecha = false;
     public float gravedad;
     public float diagonal = 1f;
 
@@ -42,8 +42,8 @@ public class Movimiento : MonoBehaviour
 
     private void Move()         ///////////MOVERSE
     {
-        float mve = Input1.Player1.Move.ReadValue<float>();
-        if (mirandoderecha ==true && mve < 0)
+        float mve = Input1.Player2.Move.ReadValue<float>();
+        if (mirandoderecha == true && mve < 0)
         {
             transform.Rotate(0f, 180f, 0f, Space.World);
             mirandoderecha = false;
@@ -52,32 +52,33 @@ public class Movimiento : MonoBehaviour
         {
             transform.Rotate(0f, -180f, 0f, Space.World);
             mirandoderecha = true;
-        }           
+        }
         Vector2 x = new Vector2(mve, 0f);
         rb.AddForce(x * velocidad, ForceMode2D.Force);
 
     }
     private void Jump(InputAction.CallbackContext c)///////////////////////////SALTAR//////////////////////////////////////////////////////
     {
-        float salto = Input1.Player1.Jump.ReadValue<float>();
+        float salto = Input1.Player2.Jump.ReadValue<float>();
         Vector2 saltito;
         if (nsaltos < saltostotales && canJump == true)
         {
             if (salto > 0.5f)
             {
                 saltito = new Vector2(0f, 1f);
-                if (pared){
-                    if (mirandoderecha )
+                if (pared)
+                {
+                    if (mirandoderecha)
                     {
                         saltito = new Vector2(-diagonal, 1f);
                     }
-                    else 
+                    else
                     {
                         saltito = new Vector2(diagonal, 1f);
                     }
-                
+
                 }
-                
+
                 rb.AddForce(saltito * fuerzasalto, ForceMode2D.Force);
                 nsaltos = nsaltos + 1;
                 DisableS(stiempo);
@@ -120,7 +121,7 @@ public class Movimiento : MonoBehaviour
     {
         if (collision.collider.tag == "Pared")
         {
-            rb.gravityScale = gravedad ;
+            rb.gravityScale = gravedad;
             pared = false;
         }
 
@@ -140,21 +141,21 @@ public class Movimiento : MonoBehaviour
     public void Awake()//////////////////////////////////COSAS DEL INPUT QUE TAMPOCO ENTIENDO DEMASIADO Y MEJOR NO TOCAR P2//////////////////////////
     {
         Input1 = new Controls1();
-        Input1.Player1.Jump.started += Jump;
-        Input1.Player1.Jump.performed += Jump;
-        Input1.Player1.Jump.canceled += Jump;
-        Input1.Player1.Crouch.started += Crouch;
-        Input1.Player1.Crouch.performed += Crouch;
-        Input1.Player1.Crouch.canceled += Crouch;
-        Input1.Player1.Punch.started += Punch;
-        Input1.Player1.Punch.performed += Punch;
-        Input1.Player1.Punch.canceled += Punch;
-        Input1.Player1.PunchE.started += PunchE;
-        Input1.Player1.PunchE.performed += PunchE;
-        Input1.Player1.PunchE.canceled += PunchE;
-        Input1.Player1.PunchF.started += PunchF;
-        Input1.Player1.PunchF.performed += PunchF;
-        Input1.Player1.PunchF.canceled += PunchF;
+        Input1.Player2.Jump.started += Jump;
+        Input1.Player2.Jump.performed += Jump;
+        Input1.Player2.Jump.canceled += Jump;
+        Input1.Player2.Crouch.started += Crouch;
+        Input1.Player2.Crouch.performed += Crouch;
+        Input1.Player2.Crouch.canceled += Crouch;
+        Input1.Player2.Punch.started += Punch;
+        Input1.Player2.Punch.performed += Punch;
+        Input1.Player2.Punch.canceled += Punch;
+        Input1.Player2.PunchE.started += PunchE;
+        Input1.Player2.PunchE.performed += PunchE;
+        Input1.Player2.PunchE.canceled += PunchE;
+        Input1.Player2.PunchF.started += PunchF;
+        Input1.Player2.PunchF.performed += PunchF;
+        Input1.Player2.PunchF.canceled += PunchF;
     }
     public void OnEnable()//////////////////////COSAS RARAS DEL INPUT QUE TAMPOCO ENTIENDO DEMASIADO Y MEJOR NO TOCAR P2////////////////////////////
     {
@@ -167,4 +168,3 @@ public class Movimiento : MonoBehaviour
     }
 
 }////////////////////////////////////ya dejo de gritar :)/////////////////////////////////////////////////////////////////////////////////////////////
-
