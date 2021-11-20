@@ -24,8 +24,7 @@ public class EventosPelea : MonoBehaviour
     public int vidasP1;
     public int vidasP2;
 
-    // Victoria de jugador:
-    [SerializeField]
+    // Victoria de jugador:                     (quien ha ganado?)
     private int victoryPlayer = 0;
 
     private void Start()
