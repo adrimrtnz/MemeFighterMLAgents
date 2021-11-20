@@ -22,6 +22,7 @@ public class Atributos : MonoBehaviour
 
     private void Start()
     {
+        controladorGeneral = GameObject.Find("ControladorEventos");
         hp = maxHP;
     }
 
@@ -40,11 +41,6 @@ public class Atributos : MonoBehaviour
     //Cuando muere el personaje se llama esta munción (siempre que se destruye el objeto)
     private void OnDestroy()
     {
-        try{
-            controladorGeneral.GetComponent<EventosPelea>().PlayerDead(this.gameObject);
-        }
-        catch (MissingReferenceException e) {
-            print("Este player ya está muerto: " + e.GetBaseException());
-        }
+        if (controladorGeneral != null) controladorGeneral.GetComponent<EventosPelea>().PlayerDead(this.gameObject);
     }
 }
