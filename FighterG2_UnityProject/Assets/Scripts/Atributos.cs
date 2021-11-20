@@ -41,18 +41,6 @@ public class Atributos : MonoBehaviour
     //Cuando muere el personaje se llama esta munción (siempre que se destruye el objeto)
     private void OnDestroy()
     {
-        try
-        {
-            if (controladorGeneral != null) controladorGeneral.GetComponent<EventosPelea>().PlayerDead(this.gameObject);
-        }
-        catch (MissingReferenceException e)
-        {
-            print("Este player ya está muerto: " + e.GetBaseException());
-        }
-        catch (UnassignedReferenceException e)
-        {
-            controladorGeneral = GameObject.Find("ControladorEvento");
-            print(e.GetBaseException());
-        }
+        if (controladorGeneral != null) controladorGeneral.GetComponent<EventosPelea>().PlayerDead(this.gameObject);
     }
 }
