@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EventosPelea : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class EventosPelea : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
 
+    //El jugador X necesita ser revivido
+    private bool player1CanBeRespawned = false, player2CanBeRespawned = false;
+
     [Header("SpawnPoints")]
     public Vector3 spawnP1, spawnP2;
 
@@ -20,34 +24,53 @@ public class EventosPelea : MonoBehaviour
     public int vidasP1;
     public int vidasP2;
 
+    // Victoria de jugador:
+    [SerializeField]
+    private int victoryPlayer = 0;
+
     private void Start()
     {
         spawnP1 = player1.transform.position;
         spawnP2 = player2.transform.position;
     }
+    private void Update()
+    {
+        if (player1 == null && player1CanBeRespawned) {
+            SpawnPlayer(1);
+            player1CanBeRespawned = false;
+            vidasP1 -= 1;
+        }
+        if (player2 == null && player2CanBeRespawned) {
+            SpawnPlayer(2);
+            player2CanBeRespawned = false;
+            vidasP2 -= 1;
+        }
+    }
     //Cuando un jugador muere llama a esta función
     public void PlayerDead(GameObject player) {
         if (player == player2)
         {
-            vidasP2 -= 1;
-            if (vidasP2 > 0) SpawnPlayer(2);
-            else
+            if (vidasP2 <= 1 && victoryPlayer == 0) 
             {
-                //Gana el jugador 1 
-                //Cargar aquí la escena de victoria
+                // Gana el jugador 1
+                victoryPlayer = 1;
                 print("Player 1 wins");
+                SceneManager.LoadScene("Menu");         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<      Cargar aquí la escena de victoria (gana jugador 1) Cambiar Menu por el nombre de la escena
             }
+            else
+            player2CanBeRespawned = true;
         }
         else if (player == player1) 
         {
-            vidasP1 -= 1;
-            if (vidasP1 > 0) SpawnPlayer(1);
-            else
+            if (vidasP1 <= 1 && victoryPlayer == 0) 
             {
                 //Gana el jugador 2
-                //Cargar aquí la escena de vicoria
+                victoryPlayer = 2;
                 print("Player 2 wins");
+                SceneManager.LoadScene("Menu");         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<      Cargar aquí la escena de vicoria (gana jugador 2) Cambiar Menu por el nombre de la escena
             }
+            else
+            player1CanBeRespawned = true;
         }
     }
 
@@ -57,9 +80,11 @@ public class EventosPelea : MonoBehaviour
         switch (pNum) {
             case 1:
                 player1 = Instantiate(PrefP1, spawnP1, new Quaternion(0, 0, 0, 0));
+                player1.name = PrefP1.name;
                 break;
             case 2:
                 player2 = Instantiate(PrefP2, spawnP2, new Quaternion(0, 0, 0, 0));
+                player2.name = PrefP2.name;
                 break;
             default:
                 print("No such a player");
