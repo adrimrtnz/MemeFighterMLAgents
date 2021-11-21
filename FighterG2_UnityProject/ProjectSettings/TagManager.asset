@@ -8,6 +8,7 @@ TagManager:
   - Pared
   - Saliente
   - Techo
+  - Destroy
   layers:
   - Default
   - TransparentFX
