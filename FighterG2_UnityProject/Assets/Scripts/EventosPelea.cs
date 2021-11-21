@@ -54,7 +54,7 @@ public class EventosPelea : MonoBehaviour
                 // Gana el jugador 1
                 victoryPlayer = 1;
                 print("Player 1 wins");
-                SceneManager.LoadScene("Menu");         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<      Cargar aquí la escena de victoria (gana jugador 1) Cambiar Menu por el nombre de la escena
+                SceneManager.LoadScene("B_EscenaVictoria");         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<      Cargar aquí la escena de victoria (gana jugador 1) Cambiar Menu por el nombre de la escena
             }
             else
             player2CanBeRespawned = true;
@@ -66,7 +66,7 @@ public class EventosPelea : MonoBehaviour
                 //Gana el jugador 2
                 victoryPlayer = 2;
                 print("Player 2 wins");
-                SceneManager.LoadScene("Menu");         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<      Cargar aquí la escena de vicoria (gana jugador 2) Cambiar Menu por el nombre de la escena
+                SceneManager.LoadScene("D_EscenaVic");         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<      Cargar aquí la escena de vicoria (gana jugador 2) Cambiar Menu por el nombre de la escena
             }
             else
             player1CanBeRespawned = true;

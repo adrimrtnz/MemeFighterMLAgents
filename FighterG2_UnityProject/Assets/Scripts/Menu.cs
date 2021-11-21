@@ -23,6 +23,8 @@ public class Menu : MonoBehaviour
 
     public void PantallaCarga()
     {
+        // Avtivar la pantalla de carga 
+
         pantallaCarga.gameObject.SetActive(true);
 
         fondo.gameObject.SetActive(false);
@@ -38,5 +40,10 @@ public class Menu : MonoBehaviour
     public void Salir() 
     {
         Application.Quit();
+    }
+
+    public void VolverMenu() 
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
