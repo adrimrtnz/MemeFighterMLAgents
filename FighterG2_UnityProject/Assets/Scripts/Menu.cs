@@ -5,18 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-
+    public GameObject pantallaCarga;
+    public GameObject fondo;
+    public GameObject botones;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void PantallaCarga()
+    {
+        pantallaCarga.gameObject.SetActive(true);
+
+        fondo.gameObject.SetActive(false);
+
+        botones.gameObject.SetActive(false);
     }
 
     public void Jugar()
