@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &138844287064724499
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3232937310883335500, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232937310883335500, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232937310883335500, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232937310883335500, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232937310883335500, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232937310883335500, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232937310883335500, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232937310883335500, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232937310883335500, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232937310883335500, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232937310883335500, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232937310883335503, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232937310883335503, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232937310883335506, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+      propertyPath: m_Name
+      value: DogeP2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232937310883335507, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+      propertyPath: mirandoderecha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600869528460140956, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0816
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3232937310883335507, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+--- !u!1 &3256372453275539777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3232937310883335506, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+  m_PrefabInstance: {fileID: 138844287064724499}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6180378830212719532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3256372453275539777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9053611c7091e2c4db3effc3498bddfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fuerzasalto: 4000
+  nsaltos: 0
+  saltostotales: 2
+  stiempo: 0.3
+  velocidad: 100
+  pared: 0
+  gpared: 7
+  mirandoderecha: 0
+  gravedad: 0
+  diagonal: 0.3
+--- !u!114 &1405696438711845542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3256372453275539777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee36dcc67a736e479fc8a6d74816614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  hp: 0
+  atk: 0
+  def: 0
+  vel: 0
+  controladorGeneral: {fileID: 0}
