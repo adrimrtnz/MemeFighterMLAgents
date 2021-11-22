@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Escenario1.unity
     guid: 396c4f5ce2fbfd94c89c2b030a4d4e61
+  - enabled: 1
+    path: Assets/Scenes/DEscenaVictoria.unity
+    guid: 714e71b4f3354fe429bea607c5bdc13b
+  - enabled: 1
+    path: Assets/Scenes/BEscenaVictoria.unity
+    guid: 4a8b2345e71360a42a958c59076dbeae
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
