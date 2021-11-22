@@ -26,6 +26,9 @@ public class Movimiento : MonoBehaviour
     private Controls1 Input1;
     private Rigidbody2D rb;
 
+    [Header("SFX")]
+    public SFXScript sfx;
+
     void Start()///////////////////////////////////////COSAS QUE SE EJECUTAN AL EMPEZAR//////////////////////////////////////////////
     {
         rb = GetComponent<Rigidbody2D>();
@@ -77,7 +80,10 @@ public class Movimiento : MonoBehaviour
                     }
                 
                 }
-                
+                //Aquí el sonido
+                if (sfx == null) sfx = GameObject.Find("SFXManager").GetComponent<SFXScript>();
+                sfx.PlaySound("Jump1");
+                //Aquí la fuerza aplicada
                 rb.AddForce(saltito * fuerzasalto, ForceMode2D.Force);
                 nsaltos = nsaltos + 1;
                 DisableS(stiempo);
