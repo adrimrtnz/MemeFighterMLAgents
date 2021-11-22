@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class EventosPelea : MonoBehaviour
 {
     [Header("Prefabs Players")]
@@ -23,6 +24,8 @@ public class EventosPelea : MonoBehaviour
     [Header("Vidas")]
     public int vidasP1;
     public int vidasP2;
+
+    
 
     // Victoria de jugador:                     (quien ha ganado?)
     private int victoryPlayer = 0;
