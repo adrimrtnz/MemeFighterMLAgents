@@ -30,52 +30,52 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.2666667
+        time: 0.81666666
         value: 0.343
-        inSlope: 0.1115152
-        outSlope: 0.1115152
+        inSlope: 0.17250006
+        outSlope: 0.17250006
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.65
+        time: 1.0666667
         value: 0.389
-        inSlope: 0.035200026
-        outSlope: 0.035200026
+        inSlope: 0.05387759
+        outSlope: 0.05387759
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 2.5166667
+        time: 1.6333333
         value: 0.4
-        inSlope: 0.015714297
-        outSlope: 0.015714297
+        inSlope: 0.024220198
+        outSlope: 0.024220198
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 4.45
+        time: 2.8833334
         value: 0.751
-        inSlope: 0.15
-        outSlope: 0.15
+        inSlope: 0.23233081
+        outSlope: 0.23233081
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 5.95
+        time: 3.85
         value: 0.915
-        inSlope: 0.098940395
-        outSlope: 0.098940395
+        inSlope: 0.15244898
+        outSlope: 0.15244898
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 6.9666667
+        time: 4.516667
         value: 1
         inSlope: 0
         outSlope: 0
@@ -111,7 +111,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 7.0666666
+    m_StopTime: 4.5333333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -140,52 +140,52 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.2666667
+        time: 0.81666666
         value: 0.343
-        inSlope: 0.1115152
-        outSlope: 0.1115152
+        inSlope: 0.17250006
+        outSlope: 0.17250006
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.65
+        time: 1.0666667
         value: 0.389
-        inSlope: 0.035200026
-        outSlope: 0.035200026
+        inSlope: 0.05387759
+        outSlope: 0.05387759
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 2.5166667
+        time: 1.6333333
         value: 0.4
-        inSlope: 0.015714297
-        outSlope: 0.015714297
+        inSlope: 0.024220198
+        outSlope: 0.024220198
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 4.45
+        time: 2.8833334
         value: 0.751
-        inSlope: 0.15
-        outSlope: 0.15
+        inSlope: 0.23233081
+        outSlope: 0.23233081
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 5.95
+        time: 3.85
         value: 0.915
-        inSlope: 0.098940395
-        outSlope: 0.098940395
+        inSlope: 0.15244898
+        outSlope: 0.15244898
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 6.9666667
+        time: 4.516667
         value: 1
         inSlope: 0
         outSlope: 0
@@ -204,8 +204,8 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 7.0666666
-    functionName: Jugar
+  - time: 4.5333333
+    functionName: ActivarBotonContinuar
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
