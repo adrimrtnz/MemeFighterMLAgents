@@ -33,6 +33,7 @@ public class Movimiento : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         gravedad = rb.gravityScale;
+        if (sfx == null) sfx = GameObject.Find("SFXManager").GetComponent<SFXScript>();
     }
 
     void FixedUpdate() ///////////////////////////////////////COSAS QUE SE EJECUTAN EN CADA FRAME///////////////////////////////////////////////
@@ -81,7 +82,6 @@ public class Movimiento : MonoBehaviour
                 
                 }
                 //Aquí el sonido
-                if (sfx == null) sfx = GameObject.Find("SFXManager").GetComponent<SFXScript>();
                 sfx.PlaySound("Jump1");
                 //Aquí la fuerza aplicada
                 rb.AddForce(saltito * fuerzasalto, ForceMode2D.Force);
