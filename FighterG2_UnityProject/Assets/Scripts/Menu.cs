@@ -9,6 +9,10 @@ public class Menu : MonoBehaviour
     public GameObject fondo;
     public GameObject botones;
 
+    public GameObject buttonPlay;
+    public GameObject slider;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,5 +49,11 @@ public class Menu : MonoBehaviour
     public void VolverMenu() 
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    public void ActivarBotonContinuar() 
+    {
+        buttonPlay.gameObject.SetActive(true);
+        slider.gameObject.SetActive(false);
     }
 }
