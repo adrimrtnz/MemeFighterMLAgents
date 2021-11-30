@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373866235985898462}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.078, y: -0.461, z: 0}
+  m_LocalPosition: {x: 0.04019736, y: -0.51856226, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -78,8 +78,9 @@ GameObject:
   - component: {fileID: 3232937310883335507}
   - component: {fileID: 4542305470997028519}
   - component: {fileID: 1208050817228927660}
+  - component: {fileID: 479741791956105442}
   m_Layer: 6
-  m_Name: DogeP1
+  m_Name: BunnyP1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +95,7 @@ Transform:
   m_GameObject: {fileID: 3232937310883335506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 24.877254, y: 19.686783, z: 1}
+  m_LocalScale: {x: 40.049892, y: 31.693752, z: 1.6099}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3600869528460140956}
@@ -142,7 +143,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7610de25a83b98442a632c23f81cadf9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb91b294950b8f640972ab4c1df27e0c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -166,8 +167,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0046313126, y: -0.015565356}
-  m_Size: {x: 0.11838865, y: 0.3769689}
+  m_Offset: {x: -0.007551012, y: -0.04434601}
+  m_Size: {x: 0.094024, y: 0.31940815}
   m_Direction: 0
 --- !u!50 &3232937310883335505
 Rigidbody2D:
@@ -243,6 +244,7 @@ MonoBehaviour:
   gravedad: 0
   diagonal: 1
   sfx: {fileID: 0}
+  plAnim: {fileID: 479741791956105442}
 --- !u!114 &4542305470997028519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,3 +275,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eacded6e5d98d34082993f0eff5cd4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &479741791956105442
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3232937310883335506}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7320ef4d85f5197499689a810fc79fb4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

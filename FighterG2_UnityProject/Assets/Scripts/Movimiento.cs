@@ -29,6 +29,8 @@ public class Movimiento : MonoBehaviour
     [Header("SFX")]
     public SFXScript sfx;
 
+    public Animator plAnim;
+
     void Start()///////////////////////////////////////COSAS QUE SE EJECUTAN AL EMPEZAR//////////////////////////////////////////////
     {
         rb = GetComponent<Rigidbody2D>();
@@ -56,30 +58,42 @@ public class Movimiento : MonoBehaviour
         {
             transform.Rotate(0f, -180f, 0f, Space.World);
             mirandoderecha = true;
-        }           
+        }
         Vector2 x = new Vector2(mve, 0f);
         rb.AddForce(x * velocidad, ForceMode2D.Force);
+
+        //Poner animación correr
+        plAnim.SetBool("correr",true);
+
+        //Quitar animación correr
+        if (mve == 0)
+        {
+            plAnim.SetBool("correr", false);
+        }
 
     }
     private void Jump(InputAction.CallbackContext c)///////////////////////////SALTAR//////////////////////////////////////////////////////
     {
         float salto = Input1.Player1.Jump.ReadValue<float>();
+
         Vector2 saltito;
         if (nsaltos < saltostotales && canJump == true)
         {
+            
             if (salto > 0.5f)
             {
                 saltito = new Vector2(0f, 1f);
-                if (pared){
-                    if (mirandoderecha )
+                if (pared)
+                {
+                    if (mirandoderecha)
                     {
                         saltito = new Vector2(-diagonal, 1f);
                     }
-                    else 
+                    else
                     {
                         saltito = new Vector2(diagonal, 1f);
                     }
-                
+
                 }
                 //Aquí el sonido
                 sfx.PlaySound("Jump1");

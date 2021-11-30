@@ -59,6 +59,10 @@ PrefabInstance:
       propertyPath: m_FlipY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3232937310883335503, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7610de25a83b98442a632c23f81cadf9, type: 3}
     - target: {fileID: 3232937310883335506, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
       propertyPath: m_Name
       value: DogeP2
@@ -73,6 +77,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3232937310883335507, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
+    - {fileID: 479741791956105442, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
 --- !u!1 &3256372453275539777 stripped
 GameObject:
