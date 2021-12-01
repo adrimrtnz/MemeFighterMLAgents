@@ -31,6 +31,14 @@ public class Movimiento : MonoBehaviour
 
     public Animator plAnim;
 
+    //variables para las animaciones
+    public bool puñocompleted = true;
+    public bool volando = false;
+    public bool saltarcompleted = true;
+    public float velovutyY = 0f;
+    public bool patadacompleted = true;
+
+
     void Start()///////////////////////////////////////COSAS QUE SE EJECUTAN AL EMPEZAR//////////////////////////////////////////////
     {
         rb = GetComponent<Rigidbody2D>();
@@ -42,6 +50,28 @@ public class Movimiento : MonoBehaviour
     {
 
         Move();
+    }
+
+    //Comprobar si esta volando o tocando el suelo.
+    private void Update()
+    {
+        velovutyY = rb.velocity.y;
+        //Poner la velocidad en positivo
+        if (rb.velocity.y < 0)
+        {
+            velovutyY = velovutyY * -1;
+        }
+
+        if (velovutyY > 0.1f)
+        {
+
+            plAnim.SetBool("volando", true);
+        }
+        else
+        {
+            plAnim.SetBool("volando", false);
+        }
+
     }
 
     ////////////////////////////                           A PARTIR DE AQUI VAN LAS ACCIONES AAAAAAAAAAAAAA                ////////////////////////
@@ -74,6 +104,13 @@ public class Movimiento : MonoBehaviour
     }
     private void Jump(InputAction.CallbackContext c)///////////////////////////SALTAR//////////////////////////////////////////////////////
     {
+        //Animación saltar
+        if (saltarcompleted && velovutyY <= 0.1f )
+        {
+            plAnim.SetTrigger("saltar");
+            saltarcompleted = false;
+        } 
+
         float salto = Input1.Player1.Jump.ReadValue<float>();
 
         Vector2 saltito;
@@ -106,23 +143,56 @@ public class Movimiento : MonoBehaviour
 
 
     }
+
+    
+
     private void Crouch(InputAction.CallbackContext c)///////////////AGACHARSE  ??? ///////////////////////////////////////////////////////////
     {
 
     }
     private void Punch(InputAction.CallbackContext c)////////////////GOLPE NORMAL/////////////////////////////////////////////////////////////
     {
-
+        //Animación patada  patadacompleted && 
+        if ((velovutyY <= 0.1f))
+        {
+            plAnim.SetTrigger("patada");
+            patadacompleted = false;
+        }
+        
     }
+
     private void PunchF(InputAction.CallbackContext c)///////////////GOLPE FUERTE/////////////////////////////////////////////////////
     {
-
+        //Animación puño  puñocompleted && 
+        if ((velovutyY <= 0.1f) )
+        {
+            plAnim.SetTrigger("Puño");
+            puñocompleted = false;
+        }
     }
     private void PunchE(InputAction.CallbackContext c)////////////////////ESPECIAL//////////////////////////////////////////////////////
     {
 
     }
-    ///////////////////////////                          HASTA AQUI VAN LAS ACCIONES AAAAAAAAAAAAAA                     //////////////////////////
+
+    //Saber cuando acaba la animación de puñoFuerte
+    public void PuñoCompleted()
+    {
+        puñocompleted = true;
+    }
+    //Saber cuando acaba la animación de saltar
+    public void SaltarCompleted()
+    {
+        saltarcompleted = true;
+    }
+    //Saber cuando acaba la animación de patadaFlojo
+    public void PatadaCompleted()
+    {
+        patadacompleted = true;
+    }
+
+
+    ///////////////////////////       HASTA AQUI VAN LAS ACCIONES AAAAAAAAAAAAAA     //////////////////////////
 
     private void OnCollisionEnter2D(Collision2D collision) ///////////DETECTA COLISIONES/////////////////////////////////////////////////
     {

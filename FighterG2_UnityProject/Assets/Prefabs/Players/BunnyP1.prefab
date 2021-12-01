@@ -95,7 +95,7 @@ Transform:
   m_GameObject: {fileID: 3232937310883335506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 40.049892, y: 31.693752, z: 1.6099}
+  m_LocalScale: {x: 40.04989, y: 31.693752, z: 1.6099}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3600869528460140956}
@@ -245,6 +245,10 @@ MonoBehaviour:
   diagonal: 1
   sfx: {fileID: 0}
   plAnim: {fileID: 479741791956105442}
+  "pu\xF1ocompleted": 1
+  volando: 0
+  saltarcompleted: 1
+  velovutyY: 0
 --- !u!114 &4542305470997028519
 MonoBehaviour:
   m_ObjectHideFlags: 0
