@@ -100,6 +100,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3600869528460140956}
+  - {fileID: 2582516481392209386}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -244,11 +245,14 @@ MonoBehaviour:
   mirandoderecha: 1
   gravedad: 0
   diagonal: 1
+  rb: {fileID: 3232937310883335505}
   sfx: {fileID: 0}
   plAnim: {fileID: 479741791956105442}
   volando: 0
   velovutyY: 0
   timeRate: 2
+  comunismo: {fileID: 5872272559812630780, guid: 1cae831a23cc915469f51b0c2e6551bf, type: 3}
+  puntoSpawn: {fileID: 2582516481392209386}
 --- !u!114 &4542305470997028519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,3 +303,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &7282818653337531453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2582516481392209386}
+  m_Layer: 6
+  m_Name: PuntoSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2582516481392209386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7282818653337531453}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.02496886, y: -0.063103914, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3232937310883335500}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

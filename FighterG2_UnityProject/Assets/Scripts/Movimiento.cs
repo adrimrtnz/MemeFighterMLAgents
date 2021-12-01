@@ -24,7 +24,7 @@ public class Movimiento : MonoBehaviour
 
     [Header("Varios")]
     private Controls1 Input1;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     [Header("SFX")]
     public SFXScript sfx;
@@ -42,11 +42,14 @@ public class Movimiento : MonoBehaviour
     private float nextPuñoTime = 0f;
     private float nextPatadaTime = 0f;
 
+    //objeto del comunismo
+    public Rigidbody2D comunismo;
 
+    public Transform puntoSpawn;
 
     void Start()///////////////////////////////////////COSAS QUE SE EJECUTAN AL EMPEZAR//////////////////////////////////////////////
     {
-        rb = GetComponent<Rigidbody2D>();
+       // rb = GetComponent<Rigidbody2D>();
         gravedad = rb.gravityScale;
         if (sfx == null) sfx = GameObject.Find("SFXManager").GetComponent<SFXScript>();
     }
@@ -192,7 +195,22 @@ public class Movimiento : MonoBehaviour
     }
     private void PunchE(InputAction.CallbackContext c)////////////////////ESPECIAL//////////////////////////////////////////////////////
     {
+        //Animación comunismo 
+        plAnim.SetTrigger("especial");
+    }
 
+    //Spawnear logo comunista
+    public void SpawnLogoComun() 
+    {
+        //Spaunear logo comunista
+        Instantiate(comunismo, puntoSpawn.position, puntoSpawn.rotation);
+    }
+
+
+    //Poner animación bunny es golpeado
+    public void BunnyGolpeado()
+    {
+        plAnim.SetTrigger("golpeado");
     }
 
     ///////////////////////////       HASTA AQUI VAN LAS ACCIONES AAAAAAAAAAAAAA     //////////////////////////
