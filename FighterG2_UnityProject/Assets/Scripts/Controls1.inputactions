@@ -11,7 +11,8 @@
                     "id": "b7896190-4a19-4b9a-9b98-247b1b97f873",
                     "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Jump",
@@ -19,7 +20,8 @@
                     "id": "d5488bde-04d8-435c-921d-a6ade044608e",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Crouch",
@@ -27,7 +29,8 @@
                     "id": "1e8717e3-398f-4552-9e57-0f666d813a66",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Punch",
@@ -35,7 +38,8 @@
                     "id": "b2425c5d-3a0e-472e-a1f2-5f7dc9df5d39",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "PunchF",
@@ -43,7 +47,8 @@
                     "id": "c1638709-0c03-4bfe-8614-2d6a06bc448d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "PunchE",
@@ -51,7 +56,8 @@
                     "id": "790c5728-a314-4b46-b915-426d8f18cb2c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -256,7 +262,7 @@
                 {
                     "name": "",
                     "id": "2a49f4b0-9f33-408b-85bc-eb8fc1c13d71",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -278,7 +284,7 @@
                 {
                     "name": "",
                     "id": "d2d23aa8-81c0-4917-891e-967da1981ab0",
-                    "path": "<Keyboard>/v",
+                    "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -300,7 +306,7 @@
                 {
                     "name": "",
                     "id": "d9955974-c597-4494-a387-0eaa8c26d6d6",
-                    "path": "<Keyboard>/b",
+                    "path": "<Keyboard>/t",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -320,7 +326,8 @@
                     "id": "ebc1f91c-9a76-45db-a417-78bd93adc297",
                     "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Jump",
@@ -328,7 +335,8 @@
                     "id": "9fff8e78-22ed-4787-9ee9-90965952bf74",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Crouch",
@@ -336,7 +344,8 @@
                     "id": "bd440ac1-0a62-4bbd-9395-2a68924d5382",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Punch",
@@ -344,7 +353,8 @@
                     "id": "ea0fc104-2a20-45d9-b5e6-b08e82f7d5dc",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "PunchF",
@@ -352,7 +362,8 @@
                     "id": "82ec5195-7e65-4272-bd81-3756c86b13e6",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "PunchE",
@@ -360,7 +371,8 @@
                     "id": "afa4feac-0b5d-4f8a-90d1-993f1530d409",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [

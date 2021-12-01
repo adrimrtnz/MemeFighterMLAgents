@@ -24,14 +24,32 @@ public class Movimiento : MonoBehaviour
 
     [Header("Varios")]
     private Controls1 Input1;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     [Header("SFX")]
     public SFXScript sfx;
 
+    public Animator plAnim;
+
+    //variables para las animaciones
+
+    public bool volando = false;
+    public float velovutyY = 0f;
+
+    public float timeRate = 2f;
+
+    private float nextjumpTime = 0f;
+    private float nextPuñoTime = 0f;
+    private float nextPatadaTime = 0f;
+
+    //objeto del comunismo
+    public Rigidbody2D comunismo;
+
+    public Transform puntoSpawn;
+
     void Start()///////////////////////////////////////COSAS QUE SE EJECUTAN AL EMPEZAR//////////////////////////////////////////////
     {
-        rb = GetComponent<Rigidbody2D>();
+       // rb = GetComponent<Rigidbody2D>();
         gravedad = rb.gravityScale;
         if (sfx == null) sfx = GameObject.Find("SFXManager").GetComponent<SFXScript>();
     }
@@ -40,6 +58,28 @@ public class Movimiento : MonoBehaviour
     {
 
         Move();
+    }
+
+    //Comprobar si esta volando o tocando el suelo.
+    private void Update()
+    {
+        velovutyY = rb.velocity.y;
+        //Poner la velocidad en positivo
+        if (rb.velocity.y < 0)
+        {
+            velovutyY = velovutyY * -1;
+        }
+
+        if (velovutyY > 0.1f)
+        {
+
+            plAnim.SetBool("volando", true);
+        }
+        else
+        {
+            plAnim.SetBool("volando", false);
+        }
+
     }
 
     ////////////////////////////                           A PARTIR DE AQUI VAN LAS ACCIONES AAAAAAAAAAAAAA                ////////////////////////
@@ -56,30 +96,55 @@ public class Movimiento : MonoBehaviour
         {
             transform.Rotate(0f, -180f, 0f, Space.World);
             mirandoderecha = true;
-        }           
+        }
         Vector2 x = new Vector2(mve, 0f);
         rb.AddForce(x * velocidad, ForceMode2D.Force);
+
+        //Poner animación correr
+        plAnim.SetBool("correr",true);
+
+        //Quitar animación correr
+        if (mve == 0)
+        {
+            plAnim.SetBool("correr", false);
+        }
 
     }
     private void Jump(InputAction.CallbackContext c)///////////////////////////SALTAR//////////////////////////////////////////////////////
     {
+        //Animación saltar Solo poner la animación de saltar cuando se haya acabado la animación
+        if (Time.time >= nextjumpTime) 
+        {
+            if (velovutyY <= 0.1f)
+            {
+                plAnim.SetTrigger("saltar");
+
+                nextjumpTime = Time.time + 1f / timeRate;
+            }
+        }
+
+        
+
         float salto = Input1.Player1.Jump.ReadValue<float>();
+
         Vector2 saltito;
         if (nsaltos < saltostotales && canJump == true)
         {
+            
             if (salto > 0.5f)
             {
                 saltito = new Vector2(0f, 1f);
-                if (pared){
-                    if (mirandoderecha )
+                if (pared)
+                {
+                    if (mirandoderecha)
                     {
                         saltito = new Vector2(-diagonal, 1f);
                     }
-                    else 
+                    else
                     {
                         saltito = new Vector2(diagonal, 1f);
                     }
-                
+
                 }
                 //Aquí el sonido
                 sfx.PlaySound("Jump1");
@@ -92,23 +157,63 @@ public class Movimiento : MonoBehaviour
 
 
     }
+
+    
+
     private void Crouch(InputAction.CallbackContext c)///////////////AGACHARSE  ??? ///////////////////////////////////////////////////////////
     {
 
     }
     private void Punch(InputAction.CallbackContext c)////////////////GOLPE NORMAL/////////////////////////////////////////////////////////////
     {
+        //Animación patada 
+        if(Time.time >= nextPatadaTime)
+        {
+            if (velovutyY <= 0.1f)
+            {
+                plAnim.SetTrigger("patada");
+
+                nextPatadaTime = Time.time + 1f / timeRate;
+            }
+        }
 
     }
+
     private void PunchF(InputAction.CallbackContext c)///////////////GOLPE FUERTE/////////////////////////////////////////////////////
     {
+        //Animación puño 
+ 
+        if (Time.time >= nextPuñoTime)
+        {
+            if (velovutyY <= 0.1f)
+            {
+                plAnim.SetTrigger("Puño");
 
+                nextPuñoTime = Time.time + 1f / timeRate;
+            }
+        }
     }
     private void PunchE(InputAction.CallbackContext c)////////////////////ESPECIAL//////////////////////////////////////////////////////
     {
-
+        //Animación comunismo 
+        plAnim.SetTrigger("especial");
     }
-    ///////////////////////////                          HASTA AQUI VAN LAS ACCIONES AAAAAAAAAAAAAA                     //////////////////////////
+
+    //Spawnear logo comunista
+    public void SpawnLogoComun() 
+    {
+        //Spaunear logo comunista
+        Instantiate(comunismo, puntoSpawn.position, puntoSpawn.rotation);
+    }
+
+
+    //Poner animación bunny es golpeado
+    public void BunnyGolpeado()
+    {
+        plAnim.SetTrigger("golpeado");
+    }
+
+    ///////////////////////////       HASTA AQUI VAN LAS ACCIONES AAAAAAAAAAAAAA     //////////////////////////
 
     private void OnCollisionEnter2D(Collision2D collision) ///////////DETECTA COLISIONES/////////////////////////////////////////////////
     {
