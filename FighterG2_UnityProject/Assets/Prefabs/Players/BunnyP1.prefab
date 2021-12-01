@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiempo: 3
+  anim: {fileID: 479741791956105442}
 --- !u!1 &3232937310883335506
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,8 +168,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.007551012, y: -0.04434601}
-  m_Size: {x: 0.094024, y: 0.31940815}
+  m_Offset: {x: -0.0075510144, y: -0.029525861}
+  m_Size: {x: 0.094024, y: 0.28976795}
   m_Direction: 0
 --- !u!50 &3232937310883335505
 Rigidbody2D:
@@ -245,10 +246,9 @@ MonoBehaviour:
   diagonal: 1
   sfx: {fileID: 0}
   plAnim: {fileID: 479741791956105442}
-  "pu\xF1ocompleted": 1
   volando: 0
-  saltarcompleted: 1
   velovutyY: 0
+  timeRate: 2
 --- !u!114 &4542305470997028519
 MonoBehaviour:
   m_ObjectHideFlags: 0

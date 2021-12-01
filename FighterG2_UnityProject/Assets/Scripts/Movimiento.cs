@@ -32,11 +32,16 @@ public class Movimiento : MonoBehaviour
     public Animator plAnim;
 
     //variables para las animaciones
-    public bool puñocompleted = true;
+
     public bool volando = false;
-    public bool saltarcompleted = true;
     public float velovutyY = 0f;
-    public bool patadacompleted = true;
+
+    public float timeRate = 2f;
+
+    private float nextjumpTime = 0f;
+    private float nextPuñoTime = 0f;
+    private float nextPatadaTime = 0f;
+
 
 
     void Start()///////////////////////////////////////COSAS QUE SE EJECUTAN AL EMPEZAR//////////////////////////////////////////////
@@ -104,12 +109,18 @@ public class Movimiento : MonoBehaviour
     }
     private void Jump(InputAction.CallbackContext c)///////////////////////////SALTAR//////////////////////////////////////////////////////
     {
-        //Animación saltar
-        if (saltarcompleted && velovutyY <= 0.1f )
+        //Animación saltar Solo poner la animación de saltar cuando se haya acabado la animación
+        if (Time.time >= nextjumpTime) 
         {
-            plAnim.SetTrigger("saltar");
-            saltarcompleted = false;
-        } 
+            if (velovutyY <= 0.1f)
+            {
+                plAnim.SetTrigger("saltar");
+
+                nextjumpTime = Time.time + 1f / timeRate;
+            }
+        }
+
+        
 
         float salto = Input1.Player1.Jump.ReadValue<float>();
 
@@ -152,45 +163,37 @@ public class Movimiento : MonoBehaviour
     }
     private void Punch(InputAction.CallbackContext c)////////////////GOLPE NORMAL/////////////////////////////////////////////////////////////
     {
-        //Animación patada  patadacompleted && 
-        if ((velovutyY <= 0.1f))
+        //Animación patada 
+        if(Time.time >= nextPatadaTime)
         {
-            plAnim.SetTrigger("patada");
-            patadacompleted = false;
+            if (velovutyY <= 0.1f)
+            {
+                plAnim.SetTrigger("patada");
+
+                nextPatadaTime = Time.time + 1f / timeRate;
+            }
         }
-        
+
     }
 
     private void PunchF(InputAction.CallbackContext c)///////////////GOLPE FUERTE/////////////////////////////////////////////////////
     {
-        //Animación puño  puñocompleted && 
-        if ((velovutyY <= 0.1f) )
+        //Animación puño 
+ 
+        if (Time.time >= nextPuñoTime)
         {
-            plAnim.SetTrigger("Puño");
-            puñocompleted = false;
+            if (velovutyY <= 0.1f)
+            {
+                plAnim.SetTrigger("Puño");
+
+                nextPuñoTime = Time.time + 1f / timeRate;
+            }
         }
     }
     private void PunchE(InputAction.CallbackContext c)////////////////////ESPECIAL//////////////////////////////////////////////////////
     {
 
     }
-
-    //Saber cuando acaba la animación de puñoFuerte
-    public void PuñoCompleted()
-    {
-        puñocompleted = true;
-    }
-    //Saber cuando acaba la animación de saltar
-    public void SaltarCompleted()
-    {
-        saltarcompleted = true;
-    }
-    //Saber cuando acaba la animación de patadaFlojo
-    public void PatadaCompleted()
-    {
-        patadacompleted = true;
-    }
-
 
     ///////////////////////////       HASTA AQUI VAN LAS ACCIONES AAAAAAAAAAAAAA     //////////////////////////
 
