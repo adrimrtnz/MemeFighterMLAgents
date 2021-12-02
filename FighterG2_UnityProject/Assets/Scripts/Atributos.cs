@@ -35,6 +35,7 @@ public class Atributos : MonoBehaviour
     private void Update()
     {
         changeEsp(generacionEspPasiva * Time.deltaTime);
+        if (hp <= 0) Destroy(this.gameObject);
     }
 
     //La vida solo es accesible mediante funciones para controlar cuando se modifica

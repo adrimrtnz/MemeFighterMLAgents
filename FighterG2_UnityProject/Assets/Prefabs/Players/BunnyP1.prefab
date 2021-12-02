@@ -270,7 +270,7 @@ MonoBehaviour:
   maxHP: 100
   hp: 0
   esp: 0
-  generacionEspPasiva: 0
+  generacionEspPasiva: 1
   atk: 0
   def: 0
   vel: 0

@@ -31,9 +31,12 @@ public class Movimiento2 : MonoBehaviour
     public float td = 0.3f;
     public float tf = 0.3f;
     public float te = 0.5f;
+    public bool damaged;
 
     [Header("SFX")]
     public SFXScript sfx;
+
+
 
     void Start()///////////////////////////////////////COSAS QUE SE EJECUTAN AL EMPEZAR//////////////////////////////////////////////
     {
@@ -41,9 +44,10 @@ public class Movimiento2 : MonoBehaviour
         gravedad = rb.gravityScale;
         if (sfx == null) sfx = GameObject.Find("SFXManager").GetComponent<SFXScript>();
     }
-
+    
     void FixedUpdate() ///////////////////////////////////////COSAS QUE SE EJECUTAN EN CADA FRAME///////////////////////////////////////////////
     {
+        a.SetBool("Damaged", damaged);
         if (rb.velocity.y == 0)
         {
             a.SetBool("Ground", true);
