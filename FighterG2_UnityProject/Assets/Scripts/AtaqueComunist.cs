@@ -18,6 +18,7 @@ public class AtaqueComunist : MonoBehaviour
     //en el primer frame
     private void Start()
     {
+
         //mover el logo comunista en la dirección corecta
         if (movim.mirandoderecha)
         {

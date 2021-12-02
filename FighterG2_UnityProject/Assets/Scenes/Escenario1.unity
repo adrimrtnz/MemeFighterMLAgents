@@ -130,21 +130,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 551800165266743285, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
-      propertyPath: anim
-      value: 
-      objectReference: {fileID: 2083401981}
     - target: {fileID: 3232937310883335500, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
       propertyPath: m_RootOrder
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3232937310883335500, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16
+      value: -15.9
       objectReference: {fileID: 0}
     - target: {fileID: 3232937310883335500, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.9999998
+      value: 17.6
       objectReference: {fileID: 0}
     - target: {fileID: 3232937310883335500, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -178,18 +174,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3232937310883335503, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 5f4755b8e136a374781941970a90979a, type: 3}
     - target: {fileID: 3232937310883335506, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
       propertyPath: m_Name
       value: BunnyP1
       objectReference: {fileID: 0}
-    - target: {fileID: 3232937310883335507, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
-      propertyPath: plAnim
-      value: 
-      objectReference: {fileID: 2083401981}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
 --- !u!1 &54158256
@@ -1062,7 +1050,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7790927, y: 1}
+    m_SensorSize: {x: 1.775974, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1190,11 +1178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3232937310883335500, guid: 801c2106f10eada479617f642be2b404, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.6429176
+      value: 18.2
       objectReference: {fileID: 0}
     - target: {fileID: 3232937310883335500, guid: 801c2106f10eada479617f642be2b404, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.7337542
+      value: 12.6
       objectReference: {fileID: 0}
     - target: {fileID: 3232937310883335500, guid: 801c2106f10eada479617f642be2b404, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3543,11 +3531,6 @@ Animator:
 --- !u!1 &2083401980 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3232937310883335506, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
-  m_PrefabInstance: {fileID: 11588203}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &2083401981 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 479741791956105442, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
   m_PrefabInstance: {fileID: 11588203}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5862597050324161625
