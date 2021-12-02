@@ -56,7 +56,6 @@ public class Movimiento : MonoBehaviour
 
     void FixedUpdate() ///////////////////////////////////////COSAS QUE SE EJECUTAN EN CADA FRAME///////////////////////////////////////////////
     {
-
         Move();
     }
 
