@@ -14,11 +14,11 @@ public class Colision : MonoBehaviour
             if(this.gameObject.transform.position.x < collision.gameObject.transform.position.x)
             {
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(1 * potenciaV2.x, potenciaV2.y));
-                collision.GetComponent<Atributos>().changeHP(daño);
+                collision.GetComponent<Atributos>().changeHP(-daño);
             } else if (this.gameObject.transform.position.x > collision.gameObject.transform.position.x)
                 {
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1 * potenciaV2.x, potenciaV2.y));
-                    collision.GetComponent<Atributos>().changeHP(daño); 
+                    collision.GetComponent<Atributos>().changeHP(-daño); 
                 }
 
             

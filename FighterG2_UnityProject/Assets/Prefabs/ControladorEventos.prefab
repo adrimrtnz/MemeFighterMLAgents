@@ -101,7 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5862597049563844821}
-  - component: {fileID: 5862597049563844818}
+  - component: {fileID: 8731019060528143466}
   m_Layer: 0
   m_Name: ControladorEventos
   m_TagString: Untagged
@@ -126,7 +126,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5862597049563844818
+--- !u!114 &8731019060528143466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,10 +139,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PrefP1: {fileID: 3232937310883335506, guid: 95c53a2906da24a47b3ec659ac6efbf7, type: 3}
-  PrefP2: {fileID: 3256372453275539777, guid: d2d1f4f7977ba5f4790c8c12d33395f0, type: 3}
+  PrefP2: {fileID: 3232937310883335506, guid: 801c2106f10eada479617f642be2b404, type: 3}
   player1: {fileID: 0}
   player2: {fileID: 0}
-  spawnP1: {x: -15, y: 10, z: 0}
-  spawnP2: {x: 15, y: 10, z: 0}
-  vidasP1: 3
-  vidasP2: 3
+  spawnP1: {x: 0, y: 0, z: 0}
+  spawnP2: {x: 0, y: 0, z: 0}
+  vidasP1: 0
+  vidasP2: 0
+  hpTp1: {fileID: 0}
+  hpTp2: {fileID: 0}
+  barraEp1: {fileID: 0}
+  barraEp2: {fileID: 0}
+  vidasP1T: {fileID: 0}
+  vidasP2T: {fileID: 0}
+  vidaStr: 

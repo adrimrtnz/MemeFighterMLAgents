@@ -9,6 +9,11 @@ public class Atributos : MonoBehaviour
     [SerializeField]
     private float hp;
 
+    [Header("BarraEspecial")]
+    [SerializeField] private float esp;
+    //Cuanto se le rellena la barra por segundo pasivamente
+    public float generacionEspPasiva;
+
     
     [Header("Otros Stats")]
     //Poner aquí otros atributos como puede ser ataque, defensa, velocidad....
@@ -24,6 +29,12 @@ public class Atributos : MonoBehaviour
     {
         controladorGeneral = GameObject.Find("ControladorEventos");
         hp = maxHP;
+        esp = 0;
+    }
+
+    private void Update()
+    {
+        changeEsp(generacionEspPasiva * Time.deltaTime);
     }
 
     //La vida solo es accesible mediante funciones para controlar cuando se modifica
@@ -37,7 +48,21 @@ public class Atributos : MonoBehaviour
     public float getHP() {
         return hp;
     }
+    public void setHP(float x) {
+        hp = x;
+    }
 
+    //Protejemos la barra especial por el mismo motivo que antes
+    public void changeEsp(float x) {
+        esp += x;
+    }
+
+    public float getEsp() {
+        return esp;
+    }
+    public void setEsp(float x) {
+        esp = x;    
+    }
     //Cuando muere el personaje se llama esta munción (siempre que se destruye el objeto)
     private void OnDestroy()
     {
