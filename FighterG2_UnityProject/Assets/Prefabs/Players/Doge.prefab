@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373866235985898462}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.22, y: 12.23, z: 0}
+  m_LocalPosition: {x: -7.97, y: 12.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiempo: 3
+  anim: {fileID: 5916641128083292426}
 --- !u!1 &3232937310883335506
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,10 +76,10 @@ GameObject:
   - component: {fileID: 3232937310883335502}
   - component: {fileID: 3232937310883335505}
   - component: {fileID: 3232937310883335504}
-  - component: {fileID: 3232937310883335507}
   - component: {fileID: 4542305470997028519}
   - component: {fileID: 1208050817228927660}
   - component: {fileID: 5916641128083292426}
+  - component: {fileID: 849616172}
   m_Layer: 6
   m_Name: Doge
   m_TagString: Player
@@ -145,7 +146,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 748e5568593403f4da83c99b3c84b785, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 5.76, y: 6.86}
@@ -167,7 +168,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.3823066, y: 7.520521}
+  m_Offset: {x: -1.22, y: 7.520521}
   m_Size: {x: 5.1718054, y: 14.855305}
   m_Direction: 0
 --- !u!50 &3232937310883335505
@@ -221,33 +222,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player1
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &3232937310883335507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3232937310883335506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56e48a2987fa9094180c9405c1f046ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fuerzasalto: 4000
-  nsaltos: 0
-  saltostotales: 2
-  stiempo: 0.3
-  velocidad: 100
-  pared: 0
-  gpared: 0
-  mirandoderecha: 1
-  gravedad: 0
-  diagonal: 1
-  td: 0.1
-  tf: 0.3
-  te: 2
-  a: {fileID: 0}
-  sfx: {fileID: 0}
 --- !u!114 &4542305470997028519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,3 +272,30 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &849616172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3232937310883335506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9053611c7091e2c4db3effc3498bddfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fuerzasalto: 4000
+  nsaltos: 0
+  saltostotales: 2
+  stiempo: 0.3
+  velocidad: 100
+  pared: 0
+  gpared: 7
+  mirandoderecha: 0
+  gravedad: 0
+  diagonal: 1
+  a: {fileID: 5916641128083292426}
+  td: 0.3
+  tf: 0.3
+  te: 0.5
+  sfx: {fileID: 0}
