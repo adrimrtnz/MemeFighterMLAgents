@@ -19,24 +19,35 @@ public class Bunny_Agent : Agent
 
     private void Awake()
     {
-        // Mapeos de los diferentes outputs de movimiento del agente a acción
-        movementActions.Add(0, () => { /* Acción vacía: no moverse */ });
+        // Mapeos de los diferentes outputs de movimiento del agente a acciï¿½n
+        movementActions.Add(0, () => { /* Acciï¿½n vacï¿½a: no moverse */ });
         movementActions.Add(1, MovementTestFunction);
         movementActions.Add(2, MovementTestFunction);
         movementActions.Add(3, MovementTestFunction);
         movementActions.Add(4, MovementTestFunction);
 
-        // Mapeos de los diferentes outputs de ataque del agente a acción
-        attackActions.Add(0, () => { /* Acción vacía: no atacar */ });
+        // Mapeos de los diferentes outputs de ataque del agente a acciï¿½n
+        attackActions.Add(0, () => { /* Acciï¿½n vacï¿½a: no atacar */ });
         attackActions.Add(1, MovementTestFunction);
         attackActions.Add(2, MovementTestFunction);
         attackActions.Add(3, MovementTestFunction);
     }
 
+    public override void OnEpisodeBegin()
+    {
+        // Que hacer cuando se empieza el juego o se llama a EndEpisode()
+
+        // Reset posiciï¿½n, salud y vidas
+        transform.position = new Vector3(-15.9f, 17.6f, 0f);
+    }
+
     public override void CollectObservations(VectorSensor sensor)
     {
-        // Saber dónde estoy
+        // Saber dï¿½nde estoy
         sensor.AddObservation(transform.position);
+
+        // Saber dï¿½nde esta mi enemigo
+        sensor.AddObservation(enemy.transform.position);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -46,14 +57,60 @@ public class Bunny_Agent : Agent
         Debug.Log("Movement choice: " + movementAction + " | Attack choice: " + movementAction);
 
         // Ejecuta movimiento (si lo hay)
-        movementActions[movementAction]();
+        if (movementActions.ContainsKey(movementAction))
+        {
+            movementActions[movementAction]();
+        }
 
         // Ejecuta ataque (si lo hay)
-        attackActions[attackAction]();
+        if (attackActions.ContainsKey(attackAction))
+        {
+            attackActions[attackAction]();
+        }
+    }
+
+    public override void Heuristic(in ActionBuffers actionsOut)
+    {
+
+        /*
+         * Aqui podemos mapear controles a acciones para testear
+         * que lo estamos mapeando bien (Behaviou type = Heurystic Only)
+         * 
+         * if (input de movimiento el que sea){
+         *      actions.DiscreteActions[0] = 1;
+         *  }
+         *  
+         *  
+         *  if (input de atque el que sea){
+         *      actions.DiscreteActions[0] = 1;
+         *  }
+         */
     }
 
     private void MovementTestFunction()
     {
         Debug.Log("Esto seria una funcion de movimiento o de ataque.");
     }
+
+
+    /** 
+     Aï¿½adir triggers de condiciones y recompensas, por ejemplo (los valores no son finales):
+
+     Si el enemigo nos golpea (si disminuye nuestra vida)
+        SetReward(-10f);
+
+     Si golpeamos al enemigo (hacemos disminuir su vida)
+        SetReward(1f);
+
+     Si tiramos al enemigo del campo de batalla
+        SetReward(10f);
+
+     Si ganamos el enfrentamiento
+        SetReward(100f);
+        EndEpisode();
+
+     Si perdemos el enfrentamiento
+        SetReward(-100f);
+        EndEpisode();
+     */
 }
