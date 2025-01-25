@@ -10,8 +10,8 @@ Club del videojuego UPV: Juego de lucha grupo 2
 En la configuración del comportamiento de los ajentes se ha descrito que las acciones pueden tomar valores discretos.
 A su vez, se han configurado dos *Discrete Branches*, una para las acciones de movimiento y otra para los ataques.
 Se contemplan 5 acciones:
-- Moverse a la izquierda.
 - Moverse a la derecha.
+- Moverse a la izquierda.
 - Saltar.
 - Agacharse.
 - Quedarse quieto.

@@ -3013,6 +3013,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1735830574}
   m_SourcePrefab: {fileID: 100100000, guid: afb671f1488378945b8b111022614d7e, type: 3}
+--- !u!114 &1637432851 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2743756000198616916, guid: 5561103571611a44394f4f32a46c6a43, type: 3}
+  m_PrefabInstance: {fileID: 1518679199}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd0219322bde1a744b1f1abaa27c6db8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1713125784
 GameObject:
   m_ObjectHideFlags: 0
@@ -3895,6 +3906,7 @@ GameObject:
   - component: {fileID: 3232937310894825276}
   - component: {fileID: 3232937310894825275}
   - component: {fileID: 3232937310894825277}
+  - component: {fileID: 3232937310894825278}
   m_Layer: 6
   m_Name: BunnyP1_Agent
   m_TagString: Player
@@ -3946,6 +3958,22 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   enemy: {fileID: 849616162}
+  speedFactor: 1
+  movementSpeed: 2
+  sfx: {fileID: 1637432851}
+  a: {fileID: 479741791961295497}
+  pared: 0
+  diagonal: 1
+  gpared: 7
+  fuerzasalto: 0
+  nsaltos: 0
+  saltostotales: 2
+  stiempo: 0.3
+  gravity: 0
+  td: 0.3
+  tf: 0.3
+  te: 0.5
+  damaged: 0
 --- !u!114 &3232937310894825276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3959,7 +3987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 1
+    VectorObservationSize: 9
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
@@ -3990,6 +4018,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DecisionPeriod: 5
   TakeActionsBetweenDecisions: 1
+--- !u!114 &3232937310894825278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3232937310894825273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee36dcc67a736e479fc8a6d74816614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  hp: 0
+  esp: 0
+  generacionEspPasiva: 0
+  atk: 0
+  def: 0
+  vel: 0
+  controladorGeneral: {fileID: 0}
 --- !u!4 &3600869528467534839
 Transform:
   m_ObjectHideFlags: 0
