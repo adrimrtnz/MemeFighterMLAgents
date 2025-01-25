@@ -1,23 +1,18 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using System;
-using System.Runtime.CompilerServices;
-using Unity.MLAgents.Integrations.Match3;
-using UnityEngine.InputSystem;
-using UnityEngine.Events;
 
 public class Bunny_Agent : Agent
 {
     [SerializeField] private GameObject enemy;
     [SerializeField] private float speedFactor = 1.0f;
-    [SerializeField] private float movementSpeed = 2.0f;
+    [SerializeField] private float movementSpeed = 100.0f;
     
     [Header("SFX")]  public SFXScript sfx;
-    [SerializeField] public Animator a;
+    [SerializeField] public Animator agentAnimator;
 
     [Header("Cositas de pegarse a las paredes")]
     [SerializeField] public bool pared;
@@ -25,12 +20,12 @@ public class Bunny_Agent : Agent
     [SerializeField] public float gpared = 7.0f;
 
     [Header("Salto")]
-    public float fuerzasalto;
+    public float fuerzasalto = 4000f;
     public int nsaltos = 0;
     public int saltostotales = 2;
     private bool canJump = true;
     public float stiempo = 0.3f;
-    public float gravity;
+    public float timeRate = 2f;
 
     [Header("Golpes")]
     public float td = 0.3f;
@@ -39,10 +34,16 @@ public class Bunny_Agent : Agent
     public bool damaged;
 
     private Rigidbody2D rb;
+    private float gravity;
     private int movementAction;
     private int attackAction;
     private bool lookingToTheRight = true;
     private Atributos atributos;
+    private bool volando = false;
+    private float velocityY = 0f;
+    private float nextjumpTime = 0f;
+    private float nextPuñoTime = 0f;
+    private float nextPatadaTime = 0f;
 
     Dictionary<int, Action> movementActions = new Dictionary<int, Action>();
     Dictionary<int, Action> attackActions   = new Dictionary<int, Action>();
@@ -59,7 +60,7 @@ public class Bunny_Agent : Agent
         currentHealth = atributos.getHP();
 
         // Mapeos de los diferentes outputs de movimiento del agente a acci�n
-        movementActions.Add(0, () => { /* Accion vacia: no moverse */ });
+        movementActions.Add(0, DoNotMove);
         movementActions.Add(1, MoveRight);
         movementActions.Add(2, MoveLeft);
         movementActions.Add(3, Jump);
@@ -76,6 +77,27 @@ public class Bunny_Agent : Agent
     {
         rb = GetComponent<Rigidbody2D>();
         gravity = rb.gravityScale;
+    }
+
+    private void Update()
+    {
+        velocityY = rb.velocity.y;
+        //Poner la velocidad en positivo
+        if (rb.velocity.y < 0)
+        {
+            velocityY = velocityY * -1;
+        }
+
+        if (velocityY > 0.1f)
+        {
+
+            agentAnimator.SetBool("volando", true);
+        }
+        else
+        {
+            agentAnimator.SetBool("volando", false);
+        }
+
     }
 
     public override void OnEpisodeBegin()
@@ -110,7 +132,6 @@ public class Bunny_Agent : Agent
     {
         movementAction = actions.DiscreteActions[0];
         attackAction   = actions.DiscreteActions[1];
-        Debug.Log("Movement choice: " + movementAction + " | Attack choice: " + movementAction);
 
         // Ejecuta movimiento (si lo hay)
         if (movementActions.ContainsKey(movementAction))
@@ -143,8 +164,15 @@ public class Bunny_Agent : Agent
          */
     }
 
+    private void DoNotMove()
+    {
+        agentAnimator.SetBool("correr", false);
+    }
+
     private void MoveLeft()
     {
+        agentAnimator.SetBool("correr", true);
+        Debug.Log("Moviendo a la Izquierda");
         if (lookingToTheRight)
         {
             transform.Rotate(0f, -180f, 0f, Space.World);
@@ -156,6 +184,8 @@ public class Bunny_Agent : Agent
 
     private void MoveRight()
     {
+        agentAnimator.SetBool("correr", true);
+        Debug.Log("Moviendo a la Derecha");
         if (!lookingToTheRight)
         {
             transform.Rotate(0f, -180f, 0f, Space.World);
@@ -167,6 +197,16 @@ public class Bunny_Agent : Agent
 
     private void Jump()
     {
+        Debug.Log("Moviendo Salto");
+        if (Time.time >= nextjumpTime)
+        {
+            if (velocityY <= 0.1f)
+            {
+                agentAnimator.SetTrigger("saltar");
+
+                nextjumpTime = Time.time + 1f / timeRate;
+            }
+        }
         Vector2 saltito;
         if (nsaltos < saltostotales && canJump == true)
         {
@@ -188,7 +228,6 @@ public class Bunny_Agent : Agent
             //Aquí la fuerza
             rb.AddForce(saltito * fuerzasalto, ForceMode2D.Force);
             nsaltos = nsaltos + 1;
-            a.SetBool("Ground", false);
             DisableS(stiempo);
         }
     }
@@ -196,31 +235,42 @@ public class Bunny_Agent : Agent
     /************ GOLPE NORMAL ************/
     private void Punch()
     {
-        OnDisable();
-        a.SetBool("GolpeD", true);
-        CancelInvoke("fpunch");
-        Invoke("fpunch", td);
+        Debug.Log("Ataque PUNCH");
+        //Animación patada 
+        if (Time.time >= nextPatadaTime)
+        {
+            if (velocityY <= 0.1f)
+            {
+                agentAnimator.SetTrigger("patada");
 
+                nextPatadaTime = Time.time + 1f / timeRate;
+            }
+        }
     }
 
     /************ GOLPE FUERTE ************/
     private void PunchF()
     {
-        OnDisable();
-        a.SetBool("GolpeF", true);
-        CancelInvoke("fpunchf");
-        Invoke("fpunchf", tf);
+        Debug.Log("Ataque PUNCHF");
+        if (Time.time >= nextPuñoTime)
+        {
+            if (velocityY <= 0.1f)
+            {
+                agentAnimator.SetTrigger("Puño");
+
+                nextPuñoTime = Time.time + 1f / timeRate;
+            }
+        }
     }
 
     /************ ESPECIAL ************/
     private void PunchE()
     {
-        transform.localScale = new Vector3(1.2f, 1f, 1f);
-        a.SetBool("GolpeE", true);
-        OnDisable();
-        CancelInvoke("fpunche");
-        Invoke("fpunche", te);
+        Debug.Log("Ataque COMUNISMO");
+        //Animación comunismo 
+        agentAnimator.SetTrigger("especial");
     }
+
 
     /************ ACTIVAR Y DESACTIVAR TIEMPO ENTRE SALTOS ************/
     void DisableS(float t)
@@ -245,7 +295,6 @@ public class Bunny_Agent : Agent
             {
                 rb.gravityScale = gpared;
                 pared = true;
-                a.SetBool("Pared", true);
             }
         }
     }
@@ -255,7 +304,6 @@ public class Bunny_Agent : Agent
         {
             rb.gravityScale = gravity;
             pared = false;
-            a.SetBool("Pared", false);
         }
     }
 

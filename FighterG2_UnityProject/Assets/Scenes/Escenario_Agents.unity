@@ -3963,17 +3963,17 @@ MonoBehaviour:
   MaxStep: 0
   enemy: {fileID: 849616162}
   speedFactor: 1
-  movementSpeed: 2
+  movementSpeed: 100
   sfx: {fileID: 1637432851}
-  a: {fileID: 479741791961295497}
+  agentAnimator: {fileID: 479741791961295497}
   pared: 0
   diagonal: 1
   gpared: 7
-  fuerzasalto: 0
+  fuerzasalto: 4000
   nsaltos: 0
   saltostotales: 2
   stiempo: 0.3
-  gravity: 0
+  timeRate: 2
   td: 0.3
   tf: 0.3
   te: 0.5
