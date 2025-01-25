@@ -86,8 +86,6 @@ public class Bunny_Agent : Agent
         transform.position = new Vector3(-15.9f, 17.6f, 0f);
         atributos.setHP(atributos.maxHP);
         atributos.setEsp(0);
-
-        healthListener.Value = atributos.getHP();
     }
 
     public override void CollectObservations(VectorSensor sensor)
