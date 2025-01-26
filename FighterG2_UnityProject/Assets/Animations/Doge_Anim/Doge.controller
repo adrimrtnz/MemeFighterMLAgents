@@ -526,7 +526,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: CanPunch
+    m_ConditionEvent: CanPuch
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5148389447387017172}
@@ -1561,7 +1561,7 @@ AnimatorStateMachine:
     m_Position: {x: 1960, y: 1990, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4304691904632125684}
-    m_Position: {x: 2430, y: 1790, z: 0}
+    m_Position: {x: 2400, y: 1800, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7603815177268641300}
     m_Position: {x: 2060, y: 1460, z: 0}
@@ -1789,7 +1789,7 @@ AnimatorStateTransition:
     m_ConditionEvent: GolpeD
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: CanPunch
+    m_ConditionEvent: CanPuch
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5148389447387017172}
@@ -2020,7 +2020,7 @@ AnimatorStateTransition:
     m_ConditionEvent: GolpeD
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: CanPunch
+    m_ConditionEvent: CanPuch
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5148389447387017172}

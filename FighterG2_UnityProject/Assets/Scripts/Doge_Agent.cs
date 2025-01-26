@@ -1,17 +1,19 @@
+﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using UnityEngine;
 using System;
 
-public class Bunny_Agent : Agent
+
+public class Doge_Agent : Agent
 {
     [SerializeField] private GameObject enemy;
     [SerializeField] private float speedFactor = 1.0f;
     [SerializeField] private float movementSpeed = 100.0f;
-    
-    [Header("SFX")]  public SFXScript sfx;
+
+    [Header("SFX")] public SFXScript sfx;
     [SerializeField] public Animator agentAnimator;
 
     [Header("Cositas de pegarse a las paredes")]
@@ -39,14 +41,10 @@ public class Bunny_Agent : Agent
     private int attackAction;
     private bool lookingToTheRight = true;
     private Atributos atributos;
-    private bool volando = false;
     private float velocityY = 0f;
-    private float nextjumpTime = 0f;
-    private float nextPuñoTime = 0f;
-    private float nextPatadaTime = 0f;
 
     Dictionary<int, Action> movementActions = new Dictionary<int, Action>();
-    Dictionary<int, Action> attackActions   = new Dictionary<int, Action>();
+    Dictionary<int, Action> attackActions = new Dictionary<int, Action>();
 
     /************ LISTENERS RECOMPENSAS ************/
     private float currentHealth;
@@ -77,6 +75,7 @@ public class Bunny_Agent : Agent
     {
         rb = GetComponent<Rigidbody2D>();
         gravity = rb.gravityScale;
+        if (sfx == null) sfx = GameObject.Find("SFXManager").GetComponent<SFXScript>();
     }
 
     private void Update()
@@ -87,17 +86,23 @@ public class Bunny_Agent : Agent
         {
             velocityY = velocityY * -1;
         }
+    }
 
-        if (velocityY > 0.1f)
-        {
 
-            agentAnimator.SetBool("volando", true);
+    /************ Para animator Doge ************/
+    void FixedUpdate() 
+    {
+        // a.SetBool("Damaged", damaged);
+        if (rb.velocity.y == 0) agentAnimator.SetBool("Ground", true);
+        else agentAnimator.SetBool("Ground", false);
+        if (rb.velocity.x != 0) agentAnimator.SetBool("Hmove", true);
+        else agentAnimator.SetBool("Hmove", false); 
+        if (rb.gravityScale == 0) agentAnimator.SetBool("pared", true); 
+        else {
+            if (pared == false) agentAnimator.SetBool("Pared", false);
+            else agentAnimator.SetBool("Pared", true);
         }
-        else
-        {
-            agentAnimator.SetBool("volando", false);
-        }
-
+        agentAnimator.SetFloat("VSpeed", rb.velocity.y);
     }
 
     public override void OnEpisodeBegin()
@@ -105,7 +110,7 @@ public class Bunny_Agent : Agent
         // Que hacer cuando se empieza el juego o se llama a EndEpisode()
 
         // Reset posicion, salud y vidas
-        transform.position = new Vector3(-15.9f, 17.6f, 0f);
+        transform.position = new Vector3(18.2f, 12.6f, 0);
         atributos.setHP(atributos.maxHP);
         atributos.setEsp(0);
     }
@@ -130,10 +135,8 @@ public class Bunny_Agent : Agent
 
     public override void OnActionReceived(ActionBuffers actions)
     {
-        Debug.Log("ACTIONNNN");
-
         movementAction = actions.DiscreteActions[0];
-        attackAction   = actions.DiscreteActions[1];
+        attackAction = actions.DiscreteActions[1];
 
         // Ejecuta movimiento (si lo hay)
         if (movementActions.ContainsKey(movementAction))
@@ -168,12 +171,11 @@ public class Bunny_Agent : Agent
 
     private void DoNotMove()
     {
-        agentAnimator.SetBool("correr", false);
+        //agentAnimator.SetBool("correr", false);
     }
 
     private void MoveLeft()
     {
-        agentAnimator.SetBool("correr", true);
         Debug.Log("Moviendo a la Izquierda");
         if (lookingToTheRight)
         {
@@ -186,7 +188,6 @@ public class Bunny_Agent : Agent
 
     private void MoveRight()
     {
-        agentAnimator.SetBool("correr", true);
         Debug.Log("Moviendo a la Derecha");
         if (!lookingToTheRight)
         {
@@ -200,15 +201,6 @@ public class Bunny_Agent : Agent
     private void Jump()
     {
         Debug.Log("Moviendo Salto");
-        if (Time.time >= nextjumpTime)
-        {
-            if (velocityY <= 0.1f)
-            {
-                agentAnimator.SetTrigger("saltar");
-
-                nextjumpTime = Time.time + 1f / timeRate;
-            }
-        }
         Vector2 saltito;
         if (nsaltos < saltostotales && canJump == true)
         {
@@ -230,6 +222,7 @@ public class Bunny_Agent : Agent
             //Aquí la fuerza
             rb.AddForce(saltito * fuerzasalto, ForceMode2D.Force);
             nsaltos = nsaltos + 1;
+            agentAnimator.SetBool("Ground", false);
             DisableS(stiempo);
         }
     }
@@ -238,39 +231,28 @@ public class Bunny_Agent : Agent
     private void Punch()
     {
         Debug.Log("Ataque PUNCH");
-        //Animación patada 
-        if (Time.time >= nextPatadaTime)
-        {
-            if (velocityY <= 0.1f)
-            {
-                agentAnimator.SetTrigger("patada");
-
-                nextPatadaTime = Time.time + 1f / timeRate;
-            }
-        }
+        agentAnimator.SetBool("GolpeD", true);
+        CancelInvoke("fpunch");
+        Invoke("fpunch", td);
     }
 
     /************ GOLPE FUERTE ************/
     private void PunchF()
     {
         Debug.Log("Ataque PUNCHF");
-        if (Time.time >= nextPuñoTime)
-        {
-            if (velocityY <= 0.1f)
-            {
-                agentAnimator.SetTrigger("Puño");
-
-                nextPuñoTime = Time.time + 1f / timeRate;
-            }
-        }
+        agentAnimator.SetBool("GolpeF", true);
+        CancelInvoke("fpunchf");
+        Invoke("fpunchf", tf);
     }
 
     /************ ESPECIAL ************/
     private void PunchE()
     {
-        Debug.Log("Ataque COMUNISMO");
-        //Animación comunismo 
-        agentAnimator.SetTrigger("especial");
+        Debug.Log("Ataque MAZADO");
+        transform.localScale = new Vector3(1.2f, 1f, 1f);
+        agentAnimator.SetBool("GolpeE", true);
+        CancelInvoke("fpunche");
+        Invoke("fpunche", te);
     }
 
 
@@ -286,9 +268,9 @@ public class Bunny_Agent : Agent
         canJump = true;
     }
 
- 
+
     /************ DETECTA COLISIONES ************/
-    private void OnCollisionEnter2D(Collision2D collision) 
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.tag == "Ground" || collision.collider.tag == "Pared")
         {
@@ -350,5 +332,20 @@ public class Bunny_Agent : Agent
         // Si perdemos el enfrentamiento
         SetReward(-100f);
         EndEpisode();
+    }
+
+
+    private void fpunch()
+    {
+        agentAnimator.SetBool("GolpeD", false);
+    }
+    private void fpunchf()
+    {
+        agentAnimator.SetBool("GolpeF", false);
+    }
+    private void fpunche()
+    {
+        agentAnimator.SetBool("GolpeE", false);
+        transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
     }
 }
