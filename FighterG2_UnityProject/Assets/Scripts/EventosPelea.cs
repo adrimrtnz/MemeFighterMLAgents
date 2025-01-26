@@ -144,7 +144,7 @@ public class EventosPelea : MonoBehaviour
             case 1:
                 player1.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 player1.transform.position = new Vector3(Random.Range(spawnP1.x, spawnP2.x), spawnP1.y, 0);
-                player1.transform.rotation = Quaternion.identity;
+                //player1.transform.rotation = Quaternion.identity;
                 Atributos a = player1.GetComponent<Atributos>();
                 a.Reset();
                 //player1 = Instantiate(PrefP1, new Vector3(Random.Range(spawnP1.x, spawnP2.x), spawnP1.y, 0), new Quaternion(0, 0, 0, 0));
@@ -153,7 +153,7 @@ public class EventosPelea : MonoBehaviour
             case 2:
                 player2.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 player2.transform.position = new Vector3(Random.Range(spawnP1.x, spawnP2.x), spawnP1.y, 0);
-                player2.transform.rotation = Quaternion.identity;
+                //player2.transform.rotation = Quaternion.identity;
                 //player2 = Instantiate(PrefP2, new Vector3(Random.Range(spawnP1.x, spawnP2.x), spawnP2.y, 0), new Quaternion(0, 0, 0, 0
                 Atributos a2 = player2.GetComponent<Atributos>();
                 a2.Reset();

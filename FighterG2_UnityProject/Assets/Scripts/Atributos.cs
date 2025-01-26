@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Atributos : MonoBehaviour
 {
-    public bool imDead = false;
+    private bool imDead = false;
 
     [Header("Vida")]
     public float maxHP = 100;
