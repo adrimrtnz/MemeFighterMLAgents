@@ -68,36 +68,36 @@ public class EventosPelea : MonoBehaviour
     }
     private void Update()
     {
-        if (rezT1 > 0 && player1 == null) rezT1 -= Time.deltaTime;
-        if (rezT2 > 0 && player2 == null) rezT2 -= Time.deltaTime;
+        //if (rezT1 > 0 && player1CanBeRespawned) rezT1 -= Time.deltaTime;
+        //if (rezT2 > 0 && player2CanBeRespawned) rezT2 -= Time.deltaTime;
 
-        if (player1 == null && player1CanBeRespawned && rezT1 <= 0) {
-            SpawnPlayer(1);
-            player1CanBeRespawned = false;
-            rezT1 = rezTimerMax;
-        }
-        if (player2 == null && player2CanBeRespawned && rezT2 <= 0) {
-            SpawnPlayer(2);
-            player2CanBeRespawned = false;
-            rezT2 = rezTimerMax;
-        }
+        //if (player1 == null && player1CanBeRespawned && rezT1 <= 0) {
+        //    SpawnPlayer(1);
+        //    player1CanBeRespawned = false;
+        //    rezT1 = rezTimerMax;
+        //}
+        //if (player2 == null && player2CanBeRespawned && rezT2 <= 0) {
+        //    SpawnPlayer(2);
+        //    player2CanBeRespawned = false;
+        //    rezT2 = rezTimerMax;
+        //}
         if (player1 != null)
         {
             hpTp1.text = player1.GetComponent<Atributos>().getHP().ToString() + "%";
-            barraEp1.value = (float) player1.GetComponent<Atributos>().getEsp();
+            barraEp1.value = (float)player1.GetComponent<Atributos>().getEsp();
         }
         if (player2 != null)
         {
             hpTp2.text = player2.GetComponent<Atributos>().getHP().ToString() + "%";
-            barraEp2.value = (float) player2.GetComponent<Atributos>().getEsp();
-            
-
+            barraEp2.value = (float)player2.GetComponent<Atributos>().getEsp();
         }
     }
     //Cuando un jugador muere llama a esta función
     public void PlayerDead(GameObject player) {
+        Debug.Log("Recieved player " + player.name + " dead");
         if (player == player2)
         {
+            Debug.Log("Player2");
             if (vidasP2 <= 1 && victoryPlayer == 0)
             {
                 // Gana el jugador 1
@@ -107,14 +107,16 @@ public class EventosPelea : MonoBehaviour
             }
             else
             {
-                player2 = null;
+                //player2 = null;
                 vidasP2 -= 1;
                 vidasP2T.text = RepresentarVidas(vidasP2);
                 player2CanBeRespawned = true;
+                SpawnPlayer(2);
             }
         }
         else if (player == player1) 
         {
+            Debug.Log("Player1");
             if (vidasP1 <= 1 && victoryPlayer == 0)
             {
                 //Gana el jugador 2
@@ -124,25 +126,37 @@ public class EventosPelea : MonoBehaviour
             }
             else
             {
-                player1 = null;
+                //player1 = null;
                 vidasP1 -= 1;
                 vidasP1T.text = RepresentarVidas(vidasP1);
                 player1CanBeRespawned = true;
+                SpawnPlayer(1);
             }
         }
     }
 
     //Spawnea un jugador 
     public void SpawnPlayer(int pNum) {
+        Debug.Log($"Spawning player{pNum}");
         //Lo hago en un switch por si en un futuro hay más de 2 personajes
         switch (pNum)
         {
             case 1:
-                player1 = Instantiate(PrefP1, new Vector3(Random.Range(spawnP1.x, spawnP2.x), spawnP1.y, 0), new Quaternion(0, 0, 0, 0));
+                player1.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                player1.transform.position = new Vector3(Random.Range(spawnP1.x, spawnP2.x), spawnP1.y, 0);
+                player1.transform.rotation = Quaternion.identity;
+                Atributos a = player1.GetComponent<Atributos>();
+                a.Reset();
+                //player1 = Instantiate(PrefP1, new Vector3(Random.Range(spawnP1.x, spawnP2.x), spawnP1.y, 0), new Quaternion(0, 0, 0, 0));
                 player1.name = PrefP1.name;
                 break;
             case 2:
-                player2 = Instantiate(PrefP2, new Vector3(Random.Range(spawnP1.x, spawnP2.x), spawnP2.y, 0), new Quaternion(0, 0, 0, 0));
+                player2.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                player2.transform.position = new Vector3(Random.Range(spawnP1.x, spawnP2.x), spawnP1.y, 0);
+                player2.transform.rotation = Quaternion.identity;
+                //player2 = Instantiate(PrefP2, new Vector3(Random.Range(spawnP1.x, spawnP2.x), spawnP2.y, 0), new Quaternion(0, 0, 0, 0
+                Atributos a2 = player2.GetComponent<Atributos>();
+                a2.Reset();
                 player2.name = PrefP2.name;
                 break;
             default:

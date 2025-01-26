@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Atributos : MonoBehaviour
 {
+    public bool imDead = false;
+
     [Header("Vida")]
     public float maxHP = 100;
     [SerializeField]
@@ -16,7 +18,7 @@ public class Atributos : MonoBehaviour
 
     
     [Header("Otros Stats")]
-    //Poner aquí otros atributos como puede ser ataque, defensa, velocidad....
+    //Poner aquï¿½ otros atributos como puede ser ataque, defensa, velocidad....
     //Actualmente no sirven para nada
     public float atk;       //Ataque
     public float def;       //Defensa
@@ -30,12 +32,20 @@ public class Atributos : MonoBehaviour
         controladorGeneral = GameObject.Find("ControladorEventos");
         hp = maxHP;
         esp = 0;
+        imDead = false;
     }
 
     private void Update()
     {
         changeEsp(generacionEspPasiva * Time.deltaTime);
-        if (hp <= 0) Destroy(this.gameObject);
+        if (hp <= 0 && !imDead) Kill();
+    }
+
+    public void Reset()
+    {
+        Debug.Log("Resetting player " + gameObject.name);
+        imDead = false;
+        hp = maxHP;
     }
 
     //La vida solo es accesible mediante funciones para controlar cuando se modifica
@@ -43,7 +53,7 @@ public class Atributos : MonoBehaviour
     public void changeHP(float x) {
         if (hp > 0) hp += x;
         //Si hp <= 0 el personaje muere
-        else Destroy(this.gameObject);
+        else Kill();
     }
     //Devuelve la vida
     public float getHP() {
@@ -64,9 +74,17 @@ public class Atributos : MonoBehaviour
     public void setEsp(float x) {
         esp = x;    
     }
-    //Cuando muere el personaje se llama esta munción (siempre que se destruye el objeto)
-    private void OnDestroy()
-    {
+    //Cuando muere el personaje se llama esta munciï¿½n (siempre que se destruye el objeto)
+    // private void OnDestroy()
+    // {
+    //     if (controladorGeneral != null) controladorGeneral.GetComponent<EventosPelea>().PlayerDead(this.gameObject);
+    // }
+
+    public void Kill() {
+        if (imDead) return;
+        imDead = true;
+        Debug.Log("Player DEADDDD " + gameObject.name);
+        hp = 0;
         if (controladorGeneral != null) controladorGeneral.GetComponent<EventosPelea>().PlayerDead(this.gameObject);
     }
 }

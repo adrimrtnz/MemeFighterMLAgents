@@ -47,7 +47,7 @@ public class Movimiento2 : MonoBehaviour
     
     void FixedUpdate() ///////////////////////////////////////COSAS QUE SE EJECUTAN EN CADA FRAME///////////////////////////////////////////////
     {
-        a.SetBool("Damaged", damaged);
+        // a.SetBool("Damaged", damaged);
         if (rb.velocity.y == 0)
         {
             a.SetBool("Ground", true);
@@ -124,9 +124,9 @@ public class Movimiento2 : MonoBehaviour
                     }
 
                 }
-                //Aquí el sonido
+                //Aquï¿½ el sonido
                 sfx.PlaySound("Jump1");
-                //Aquí la fuerza
+                //Aquï¿½ la fuerza
                 rb.AddForce(saltito * fuerzasalto, ForceMode2D.Force);
                 nsaltos = nsaltos + 1;
                 a.SetBool("Ground", false);

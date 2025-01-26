@@ -8,7 +8,8 @@ public class PlayerDestroyer : MonoBehaviour
     {
         if (colision.CompareTag("Destroy"))
         {
-            Destroy(this.gameObject);
+            // Destroy(this.gameObject);
+            GetComponent<Atributos>().Kill();
         }
     }
 }
