@@ -157,14 +157,10 @@ public class Movimiento2 : MonoBehaviour
     }
     private void PunchE(InputAction.CallbackContext c)////////////////////ESPECIAL//////////////////////////////////////////////////////
     {
-
-        transform.localScale = new Vector3(1.2f, 1f, 1f);
         a.SetBool("GolpeE", true);
         OnDisable();
         CancelInvoke("fpunche");
         Invoke("fpunche", te);
-
-
     }
     ///////////////////////////                          HASTA AQUI VAN LAS ACCIONES AAAAAAAAAAAAAA                     //////////////////////////
 
