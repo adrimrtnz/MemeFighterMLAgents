@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 5232843898249043859}
   - component: {fileID: 3443723284278450531}
   - component: {fileID: 7374337631389543071}
+  - component: {fileID: 643620084658177580}
   m_Layer: 6
   m_Name: BunnyP1_Agent
   m_TagString: Player
@@ -319,6 +320,20 @@ MonoBehaviour:
   def: 0
   vel: 0
   controladorGeneral: {fileID: 0}
+--- !u!114 &643620084658177580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4798458528864762062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bfb36c7d5bea934185ee56f5ee86dfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comunismo: {fileID: 5872272559812630780, guid: 1cae831a23cc915469f51b0c2e6551bf, type: 3}
+  puntoSpawn: {fileID: 8427798921156594131}
 --- !u!1 &5185216726249962815
 GameObject:
   m_ObjectHideFlags: 0
