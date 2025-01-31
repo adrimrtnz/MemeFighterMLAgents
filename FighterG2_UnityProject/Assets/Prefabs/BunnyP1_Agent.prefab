@@ -424,6 +424,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4717532472259574258}
     m_Modifications:
+    - target: {fileID: 2954263355313194745, guid: 2c44a622185364d40b3e4a0e166b1d46, type: 3}
+      propertyPath: Parent
+      value: 
+      objectReference: {fileID: 4798458528864762062}
     - target: {fileID: 3918512058304949840, guid: 2c44a622185364d40b3e4a0e166b1d46, type: 3}
       propertyPath: m_Name
       value: PatadaBunny
@@ -498,6 +502,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4767160722985757316, guid: c3ecbdf452e2d4244b3e7cb554cabedf, type: 3}
+      propertyPath: Parent
+      value: 
+      objectReference: {fileID: 4798458528864762062}
     - target: {fileID: 6260227005654893729, guid: c3ecbdf452e2d4244b3e7cb554cabedf, type: 3}
       propertyPath: m_RootOrder
       value: 3

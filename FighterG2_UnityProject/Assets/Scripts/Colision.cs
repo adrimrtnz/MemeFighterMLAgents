@@ -18,15 +18,20 @@ public class Colision : MonoBehaviour
             else if (collision.gameObject.GetComponent<Movimiento2>() != null) collision.gameObject.GetComponent<Movimiento2>().damaged = true;
             else if (collision.gameObject.GetComponent<Bunny_Agent>() != null) { 
                 collision.gameObject.GetComponent<Bunny_Agent>().BunnyGolpeado();
-                Debug.LogWarning(transform.parent.name + " <<<<<<<<<<<<<<<<<<<<<<<<");
-                transform.parent.GetComponent<Doge_Agent>().HandleHitEnemyReward();
+                if (Parent.GetComponent<Doge_Agent>() != null)
+                {
+                    Parent.GetComponent<Doge_Agent>().HandleHitEnemyReward();
+                }
+                else if (Parent.GetComponent<Bunny_Agent>() != null) {
+                    // Se ha dado a si mismo
+                }
             }
             else if (collision.gameObject.GetComponent<Doge_Agent>() != null) { 
                 collision.gameObject.GetComponent<Doge_Agent>().DoggeGolpeado();
                 Debug.LogWarning(transform.parent.name + " <<<<<<<<<<<<<<<<<<<<<<<<");
                 if (Parent == null)
                 {
-                    transform.parent.GetComponent<Bunny_Agent>().HandleHitEnemyReward();
+                    Parent.GetComponent<Bunny_Agent>().HandleHitEnemyReward();
                 }
                 else { Parent.GetComponent<Bunny_Agent>().HandleHitEnemyReward(); } 
             }
