@@ -25,11 +25,10 @@ public class Atributos : MonoBehaviour
     public float vel;       //Velocidad
 
     [Header("Controlador general de la pelea")]
-    public GameObject controladorGeneral; 
+    public EventosPelea controladorGeneral; 
 
     private void Start()
     {
-        controladorGeneral = GameObject.Find("ControladorEventos");
         hp = maxHP;
         esp = 0;
         imDead = false;
@@ -50,10 +49,12 @@ public class Atributos : MonoBehaviour
 
     //La vida solo es accesible mediante funciones para controlar cuando se modifica
     //Modifica la vida del personaje
-    public void changeHP(float x) {
+    public bool changeHP(float x) {
         if (hp > 0) hp += x;
         //Si hp <= 0 el personaje muere
         else Kill();
+
+        return imDead;
     }
     //Devuelve la vida
     public float getHP() {
@@ -85,6 +86,13 @@ public class Atributos : MonoBehaviour
         imDead = true;
         Debug.Log("Player DEADDDD " + gameObject.name);
         hp = 0;
-        if (controladorGeneral != null) controladorGeneral.GetComponent<EventosPelea>().PlayerDead(this.gameObject);
+        if (controladorGeneral != null) controladorGeneral.PlayerDead(this.gameObject);
+
+        if (GetComponent<Bunny_Agent>() != null) {
+            GetComponent<Bunny_Agent>().HandleDeadPenalty();
+        }       
+        else if (GetComponent<Doge_Agent>() != null) {
+            GetComponent<Doge_Agent>().HandleDeadPenalty();
+        }
     }
 }

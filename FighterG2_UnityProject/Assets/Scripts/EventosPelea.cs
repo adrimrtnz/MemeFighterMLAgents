@@ -103,7 +103,9 @@ public class EventosPelea : MonoBehaviour
                 // Gana el jugador 1
                 victoryPlayer = 1;
                 print("Player 1 wins");
-                SceneManager.LoadScene("BEscenaVictoria");         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<      Cargar aquí la escena de victoria (gana jugador 1) Cambiar Menu por el nombre de la escena
+                player1.GetComponent<Bunny_Agent>().HandleWinConditionReward();
+                player2.GetComponent<Doge_Agent>().HandleLostConditionPenalty();
+                //SceneManager.LoadScene("BEscenaVictoria");         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<      Cargar aquí la escena de victoria (gana jugador 1) Cambiar Menu por el nombre de la escena
             }
             else
             {
@@ -121,8 +123,10 @@ public class EventosPelea : MonoBehaviour
             {
                 //Gana el jugador 2
                 victoryPlayer = 2;
-                print("Player 2 wins");
-                SceneManager.LoadScene("DEscenaVictoria");         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<      Cargar aquí la escena de vicoria (gana jugador 2) Cambiar Menu por el nombre de la escena
+                print("Player 2 wins"); 
+                player1.GetComponent<Bunny_Agent>().HandleLostConditionPenalty();
+                player2.GetComponent<Doge_Agent>().HandleWinConditionReward();
+                //SceneManager.LoadScene("DEscenaVictoria");         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<      Cargar aquí la escena de vicoria (gana jugador 2) Cambiar Menu por el nombre de la escena
             }
             else
             {

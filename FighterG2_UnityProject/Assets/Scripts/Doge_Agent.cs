@@ -291,6 +291,11 @@ public class Doge_Agent : Agent
         }
     }
 
+    public void DoggeGolpeado() {
+
+        damaged = true;
+        HandleGotHitPenalty();
+    }
 
     /************************ HANLDERS DE EVENTOS Y SISTEMA DE RECOMPENSAS ************************/
 
@@ -301,7 +306,7 @@ public class Doge_Agent : Agent
         SetReward(10f);
     }
 
-    public void HandleDropEnemyReward()
+    public void HandleKillEnemyReward()
     {
         // Si tiramos al enemigo del campo de batalla
         SetReward(50f);
@@ -321,7 +326,7 @@ public class Doge_Agent : Agent
         SetReward(-10f);
     }
 
-    public void HandleGotDropedPenalty()
+    public void HandleDeadPenalty()
     {
         // Si tiramos al enemigo del campo de batalla
         SetReward(-50f);

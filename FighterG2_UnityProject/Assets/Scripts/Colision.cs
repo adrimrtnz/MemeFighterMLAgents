@@ -13,18 +13,37 @@ public class Colision : MonoBehaviour
             
         {
             if (collision.gameObject.name == "BunnyP1") collision.gameObject.GetComponent<Movimiento>().BunnyGolpeado();
-            if (collision.gameObject.name == "Doge") collision.gameObject.GetComponent<Movimiento2>().damaged = true;
-            if(this.gameObject.transform.position.x < collision.gameObject.transform.position.x)
-            {
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(1 * potenciaV2.x, potenciaV2.y));
-                collision.GetComponent<Atributos>().changeHP(-daño);
-            } else if (this.gameObject.transform.position.x > collision.gameObject.transform.position.x)
-            {
-                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1 * potenciaV2.x, potenciaV2.y));
-                    collision.GetComponent<Atributos>().changeHP(-daño); 
+            else if (collision.gameObject.name == "Doge") collision.gameObject.GetComponent<Movimiento2>().damaged = true;
+            else if (collision.gameObject.name == "BunnyP1_Agent") { 
+                collision.gameObject.GetComponent<Bunny_Agent>().BunnyGolpeado();
+                transform.parent.GetComponent<Doge_Agent>().HandleHitEnemyReward();
+            }
+            else if (collision.gameObject.name == "Doge_agent") { 
+                collision.gameObject.GetComponent<Doge_Agent>().DoggeGolpeado();
+                transform.parent.GetComponent<Bunny_Agent>().HandleHitEnemyReward();
             }
 
-            
+            bool killed = false;
+            if (this.gameObject.transform.position.x < collision.gameObject.transform.position.x)
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(1 * potenciaV2.x, potenciaV2.y));
+                killed = collision.GetComponent<Atributos>().changeHP(-daño);
+            } else if (this.gameObject.transform.position.x > collision.gameObject.transform.position.x)
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1 * potenciaV2.x, potenciaV2.y));
+                killed = collision.GetComponent<Atributos>().changeHP(-daño); 
+            }
+            if (killed) {
+                if (GetComponent<Bunny_Agent>() != null)
+                {
+                    GetComponent<Bunny_Agent>().HandleKillEnemyReward();
+                }
+                else if (GetComponent<Doge_Agent>() != null)
+                {
+                    GetComponent<Doge_Agent>().HandleKillEnemyReward();
+                }
+            }
+
         }
 
 
