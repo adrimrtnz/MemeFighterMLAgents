@@ -23,6 +23,7 @@ public class logo_creator_attack : MonoBehaviour
     public void SpawnLogoComun2()
     {
         //Spaunear logo comunista
-        Instantiate(comunismo, puntoSpawn.position, puntoSpawn.rotation);
+        Rigidbody2D c = Instantiate(comunismo, puntoSpawn.position, puntoSpawn.rotation);
+        c.GetComponentInChildren<Colision>().Parent = gameObject;
     }
 }

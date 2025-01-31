@@ -51,7 +51,7 @@ public class EventosPelea : MonoBehaviour
     
 
     // Victoria de jugador:                     (quien ha ganado?)
-    private int victoryPlayer = 0;
+    //private int victoryPlayer = 0;
 
     private void Start()
     {
@@ -103,10 +103,9 @@ public class EventosPelea : MonoBehaviour
         if (player == player2)
         {
             //Debug.Log("Player2");
-            if (vidasP2 <= 1 && victoryPlayer == 0)
+            if (vidasP2 <= 1)
             {
                 // Gana el jugador 1
-                victoryPlayer = 1;
                 Debug.Log("Player 1 wins111111111111111111111111111111111111111111111111111111");
                 ResetPlayers();
                 player1.GetComponent<Bunny_Agent>().HandleWinConditionReward();
@@ -125,10 +124,9 @@ public class EventosPelea : MonoBehaviour
         else if (player == player1) 
         {
             //Debug.Log("Player1");
-            if (vidasP1 <= 1 && victoryPlayer == 0)
+            if (vidasP1 <= 1)
             {
                 //Gana el jugador 2
-                victoryPlayer = 2;
                 Debug.Log("Player 2 wins2222222222222222222222222222222222222222222222222222222222");
                 ResetPlayers();
                 player1.GetComponent<Bunny_Agent>().HandleLostConditionPenalty();
@@ -147,14 +145,15 @@ public class EventosPelea : MonoBehaviour
     }
 
     public void ResetPlayers() {
-        player1CanBeRespawned = true;
-        player2CanBeRespawned = true;
-        SpawnPlayer(1);
-        SpawnPlayer(2);
         vidasP1 = MaxVidas;
         vidasP2 = MaxVidas;
         vidasP1T.text = RepresentarVidas(vidasP1);
         vidasP2T.text = RepresentarVidas(vidasP2);
+        Debug.Log("PLAYEEEEEERS");
+        player1CanBeRespawned = true;
+        player2CanBeRespawned = true;
+        SpawnPlayer(1);
+        SpawnPlayer(2);
     }
 
     //Spawnea un jugador 

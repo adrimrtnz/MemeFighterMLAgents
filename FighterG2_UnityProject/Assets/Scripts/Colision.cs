@@ -7,6 +7,7 @@ public class Colision : MonoBehaviour
 {
     public Vector2 potenciaV2;
     public float daño;
+    public GameObject Parent = null; //Sólo para especial bunny
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -23,7 +24,11 @@ public class Colision : MonoBehaviour
             else if (collision.gameObject.GetComponent<Doge_Agent>() != null) { 
                 collision.gameObject.GetComponent<Doge_Agent>().DoggeGolpeado();
                 Debug.LogWarning(transform.parent.name + " <<<<<<<<<<<<<<<<<<<<<<<<");
-                transform.parent.GetComponent<Bunny_Agent>().HandleHitEnemyReward();
+                if (Parent == null)
+                {
+                    transform.parent.GetComponent<Bunny_Agent>().HandleHitEnemyReward();
+                }
+                else { Parent.GetComponent<Bunny_Agent>().HandleHitEnemyReward(); } 
             }
 
             bool killed = false;
