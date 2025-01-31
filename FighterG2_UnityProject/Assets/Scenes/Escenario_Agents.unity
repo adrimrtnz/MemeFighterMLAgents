@@ -3442,10 +3442,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BunnyP1_Agent
       objectReference: {fileID: 0}
-    - target: {fileID: 5107708115925180823, guid: 059cba9d3880b6940a6819d729e6f6c4, type: 3}
-      propertyPath: m_BehaviorName
-      value: PlayerBunny
-      objectReference: {fileID: 0}
     - target: {fileID: 5232843898249043859, guid: 059cba9d3880b6940a6819d729e6f6c4, type: 3}
       propertyPath: sfx
       value: 
@@ -3601,10 +3597,6 @@ PrefabInstance:
       propertyPath: controladorGeneral
       value: 
       objectReference: {fileID: 5862597050324161626}
-    - target: {fileID: 5675476574624742832, guid: 519fb0be61214524fb5a13adc2d0c47d, type: 3}
-      propertyPath: m_BehaviorName
-      value: PlayerDoge
-      objectReference: {fileID: 0}
     - target: {fileID: 6847832604412015841, guid: 519fb0be61214524fb5a13adc2d0c47d, type: 3}
       propertyPath: sfx
       value: 
