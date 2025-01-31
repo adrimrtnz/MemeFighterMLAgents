@@ -130,8 +130,6 @@ public class Bunny_Agent : Agent
 
     public override void OnActionReceived(ActionBuffers actions)
     {
-        Debug.Log("ACTIONNNN");
-
         movementAction = actions.DiscreteActions[0];
         attackAction   = actions.DiscreteActions[1];
 
@@ -174,7 +172,7 @@ public class Bunny_Agent : Agent
     private void MoveLeft()
     {
         agentAnimator.SetBool("correr", true);
-        Debug.Log("Moviendo a la Izquierda");
+        //debug.Log("Moviendo a la Izquierda");
         if (lookingToTheRight)
         {
             transform.Rotate(0f, -180f, 0f, Space.World);
@@ -187,7 +185,7 @@ public class Bunny_Agent : Agent
     private void MoveRight()
     {
         agentAnimator.SetBool("correr", true);
-        Debug.Log("Moviendo a la Derecha");
+        //debug.Log("Moviendo a la Derecha");
         if (!lookingToTheRight)
         {
             transform.Rotate(0f, -180f, 0f, Space.World);
@@ -199,7 +197,7 @@ public class Bunny_Agent : Agent
 
     private void Jump()
     {
-        Debug.Log("Moviendo Salto");
+        //debug.Log("Moviendo Salto");
         if (Time.time >= nextjumpTime)
         {
             if (velocityY <= 0.1f)
@@ -237,7 +235,7 @@ public class Bunny_Agent : Agent
     /************ GOLPE NORMAL ************/
     private void Punch()
     {
-        Debug.Log("Ataque PUNCH");
+        //debug.Log("Ataque PUNCH");
         //Animación patada 
         if (Time.time >= nextPatadaTime)
         {
@@ -253,7 +251,7 @@ public class Bunny_Agent : Agent
     /************ GOLPE FUERTE ************/
     private void PunchF()
     {
-        Debug.Log("Ataque PUNCHF");
+        //debug.Log("Ataque PUNCHF");
         if (Time.time >= nextPuñoTime)
         {
             if (velocityY <= 0.1f)
@@ -268,7 +266,7 @@ public class Bunny_Agent : Agent
     /************ ESPECIAL ************/
     private void PunchE()
     {
-        Debug.Log("Ataque COMUNISMO");
+        //debug.Log("Ataque COMUNISMO");
         //Animación comunismo 
         agentAnimator.SetTrigger("especial");
     }

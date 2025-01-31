@@ -24,6 +24,7 @@ public class EventosPelea : MonoBehaviour
     public Vector3 spawnP1, spawnP2;
 
     [Header("Vidas")]
+    public int MaxVidas = 3;
     public int vidasP1;
     public int vidasP2;
 
@@ -54,6 +55,9 @@ public class EventosPelea : MonoBehaviour
 
     private void Start()
     {
+        vidasP1 = MaxVidas;
+        vidasP2 = MaxVidas;
+
         spawnP1 = player1.transform.position;
         spawnP2 = player2.transform.position;
         hpTp1 = GameObject.Find("HPtextP1").GetComponent<TextMeshProUGUI>();
@@ -94,15 +98,17 @@ public class EventosPelea : MonoBehaviour
     }
     //Cuando un jugador muere llama a esta función
     public void PlayerDead(GameObject player) {
+        Debug.Log("-------------------------------------------------------------------------------------");
         Debug.Log("Recieved player " + player.name + " dead");
         if (player == player2)
         {
-            Debug.Log("Player2");
+            //Debug.Log("Player2");
             if (vidasP2 <= 1 && victoryPlayer == 0)
             {
                 // Gana el jugador 1
                 victoryPlayer = 1;
-                print("Player 1 wins");
+                Debug.Log("Player 1 wins111111111111111111111111111111111111111111111111111111");
+                ResetPlayers();
                 player1.GetComponent<Bunny_Agent>().HandleWinConditionReward();
                 player2.GetComponent<Doge_Agent>().HandleLostConditionPenalty();
                 //SceneManager.LoadScene("BEscenaVictoria");         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<      Cargar aquí la escena de victoria (gana jugador 1) Cambiar Menu por el nombre de la escena
@@ -118,12 +124,13 @@ public class EventosPelea : MonoBehaviour
         }
         else if (player == player1) 
         {
-            Debug.Log("Player1");
+            //Debug.Log("Player1");
             if (vidasP1 <= 1 && victoryPlayer == 0)
             {
                 //Gana el jugador 2
                 victoryPlayer = 2;
-                print("Player 2 wins"); 
+                Debug.Log("Player 2 wins2222222222222222222222222222222222222222222222222222222222");
+                ResetPlayers();
                 player1.GetComponent<Bunny_Agent>().HandleLostConditionPenalty();
                 player2.GetComponent<Doge_Agent>().HandleWinConditionReward();
                 //SceneManager.LoadScene("DEscenaVictoria");         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<      Cargar aquí la escena de vicoria (gana jugador 2) Cambiar Menu por el nombre de la escena
@@ -137,6 +144,17 @@ public class EventosPelea : MonoBehaviour
                 SpawnPlayer(1);
             }
         }
+    }
+
+    public void ResetPlayers() {
+        player1CanBeRespawned = true;
+        player2CanBeRespawned = true;
+        SpawnPlayer(1);
+        SpawnPlayer(2);
+        vidasP1 = MaxVidas;
+        vidasP2 = MaxVidas;
+        vidasP1T.text = RepresentarVidas(vidasP1);
+        vidasP2T.text = RepresentarVidas(vidasP2);
     }
 
     //Spawnea un jugador 

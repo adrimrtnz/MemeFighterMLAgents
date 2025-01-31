@@ -42,7 +42,7 @@ public class Atributos : MonoBehaviour
 
     public void Reset()
     {
-        Debug.Log("Resetting player " + gameObject.name);
+        //Debug.Log("Resetting player " + gameObject.name);
         imDead = false;
         hp = maxHP;
     }
@@ -84,7 +84,7 @@ public class Atributos : MonoBehaviour
     public void Kill() {
         if (imDead) return;
         imDead = true;
-        Debug.Log("Player DEADDDD " + gameObject.name);
+        //Debug.Log("Player DEADDDD " + gameObject.name);
         hp = 0;
         if (controladorGeneral != null) controladorGeneral.PlayerDead(this.gameObject);
 

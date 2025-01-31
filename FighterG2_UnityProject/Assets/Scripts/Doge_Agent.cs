@@ -176,7 +176,6 @@ public class Doge_Agent : Agent
 
     private void MoveLeft()
     {
-        Debug.Log("Moviendo a la Izquierda");
         if (lookingToTheRight)
         {
             transform.Rotate(0f, -180f, 0f, Space.World);
@@ -188,7 +187,6 @@ public class Doge_Agent : Agent
 
     private void MoveRight()
     {
-        Debug.Log("Moviendo a la Derecha");
         if (!lookingToTheRight)
         {
             transform.Rotate(0f, -180f, 0f, Space.World);
@@ -200,7 +198,6 @@ public class Doge_Agent : Agent
 
     private void Jump()
     {
-        Debug.Log("Moviendo Salto");
         Vector2 saltito;
         if (nsaltos < saltostotales && canJump == true)
         {
@@ -230,7 +227,6 @@ public class Doge_Agent : Agent
     /************ GOLPE NORMAL ************/
     private void Punch()
     {
-        Debug.Log("Ataque PUNCH");
         agentAnimator.SetBool("GolpeD", true);
         CancelInvoke("fpunch");
         Invoke("fpunch", td);
@@ -239,7 +235,6 @@ public class Doge_Agent : Agent
     /************ GOLPE FUERTE ************/
     private void PunchF()
     {
-        Debug.Log("Ataque PUNCHF");
         agentAnimator.SetBool("GolpeF", true);
         CancelInvoke("fpunchf");
         Invoke("fpunchf", tf);
@@ -248,7 +243,6 @@ public class Doge_Agent : Agent
     /************ ESPECIAL ************/
     private void PunchE()
     {
-        Debug.Log("Ataque MAZADO");
         transform.localScale = new Vector3(1.2f, 1f, 1f);
         agentAnimator.SetBool("GolpeE", true);
         CancelInvoke("fpunche");

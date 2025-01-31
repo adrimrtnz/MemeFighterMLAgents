@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Colision : MonoBehaviour
@@ -12,14 +13,16 @@ public class Colision : MonoBehaviour
         if (collision.CompareTag("Player"))
             
         {
-            if (collision.gameObject.name == "BunnyP1") collision.gameObject.GetComponent<Movimiento>().BunnyGolpeado();
-            else if (collision.gameObject.name == "Doge") collision.gameObject.GetComponent<Movimiento2>().damaged = true;
-            else if (collision.gameObject.name == "BunnyP1_Agent") { 
+            if (collision.gameObject.GetComponent<Movimiento>() != null) collision.gameObject.GetComponent<Movimiento>().BunnyGolpeado();
+            else if (collision.gameObject.GetComponent<Movimiento2>() != null) collision.gameObject.GetComponent<Movimiento2>().damaged = true;
+            else if (collision.gameObject.GetComponent<Bunny_Agent>() != null) { 
                 collision.gameObject.GetComponent<Bunny_Agent>().BunnyGolpeado();
+                Debug.LogWarning(transform.parent.name + " <<<<<<<<<<<<<<<<<<<<<<<<");
                 transform.parent.GetComponent<Doge_Agent>().HandleHitEnemyReward();
             }
-            else if (collision.gameObject.name == "Doge_agent") { 
+            else if (collision.gameObject.GetComponent<Doge_Agent>() != null) { 
                 collision.gameObject.GetComponent<Doge_Agent>().DoggeGolpeado();
+                Debug.LogWarning(transform.parent.name + " <<<<<<<<<<<<<<<<<<<<<<<<");
                 transform.parent.GetComponent<Bunny_Agent>().HandleHitEnemyReward();
             }
 
