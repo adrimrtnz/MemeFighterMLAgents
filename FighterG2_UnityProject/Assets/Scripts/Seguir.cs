@@ -1,16 +1,26 @@
+/// @file Seguir.cs
+/// @brief Script para seguir un objetivo en la escena, utilizado en Cinemachine.
+///
+/// Este script ajusta la posición del objeto al de un target específico, generalmente un jugador,
+/// en el contexto de peleas dentro del juego.
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// @class Seguir
+/// @brief Se encarga de seguir a un objetivo (jugador) en la escena.
 public class Seguir : MonoBehaviour
 {
 
-    //Este script se utiliza para el cinemachine
-
+    /// @brief Transform del objetivo a seguir.
     public Transform target;
+
+    /// @brief Identificador del jugador (1 o 2) para determinar a quién seguir.
     public int playerN;
-    // Start is called before the first frame update
+
+    /// @brief Método FixedUpdate, ejecutado en cada frame de física, ajusta la posición del objeto.
     private void FixedUpdate()
     {
         try

@@ -1,3 +1,10 @@
+/// @file EventosPelea.cs
+/// @brief Controlador de la lógica de combate entre los jugadores.
+///
+/// Este script gestiona la creación, reaparición y eliminación de los jugadores durante el combate,
+/// además de actualizar la UI y controlar la lógica de victoria y derrota.
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,11 +12,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-
+/// @class EventosPelea
+/// @brief Gestiona el flujo de la pelea entre dos jugadores.
 public class EventosPelea : MonoBehaviour
 {
     [Header("Prefabs Players")]
-    //Luego en la selección de presonaje será esto lo que cambiemos y seleccionaremos el prefab de cada uno 
     public GameObject PrefP1;
     public GameObject PrefP2;
 
@@ -47,12 +54,7 @@ public class EventosPelea : MonoBehaviour
     private float rezT1;
     private float rezT2;
 
-
-    
-
-    // Victoria de jugador:                     (quien ha ganado?)
-    //private int victoryPlayer = 0;
-
+    /// @brief Inicializa los valores de la pelea, incluyendo vidas y posiciones de spawn.
     private void Start()
     {
         vidasP1 = MaxVidas;
@@ -70,21 +72,10 @@ public class EventosPelea : MonoBehaviour
         vidasP1T.text = RepresentarVidas(vidasP1);
         vidasP2T.text = RepresentarVidas(vidasP2);
     }
+
+    /// @brief Actualiza la UI de vida y energía de los jugadores en cada frame.
     private void Update()
     {
-        //if (rezT1 > 0 && player1CanBeRespawned) rezT1 -= Time.deltaTime;
-        //if (rezT2 > 0 && player2CanBeRespawned) rezT2 -= Time.deltaTime;
-
-        //if (player1 == null && player1CanBeRespawned && rezT1 <= 0) {
-        //    SpawnPlayer(1);
-        //    player1CanBeRespawned = false;
-        //    rezT1 = rezTimerMax;
-        //}
-        //if (player2 == null && player2CanBeRespawned && rezT2 <= 0) {
-        //    SpawnPlayer(2);
-        //    player2CanBeRespawned = false;
-        //    rezT2 = rezTimerMax;
-        //}
         if (player1 != null)
         {
             hpTp1.text = player1.GetComponent<Atributos>().getHP().ToString() + "%";
@@ -96,9 +87,11 @@ public class EventosPelea : MonoBehaviour
             barraEp2.value = (float)player2.GetComponent<Atributos>().getEsp();
         }
     }
-    //Cuando un jugador muere llama a esta función
+
+    /// @brief Maneja la lógica cuando un jugador muere.
+    ///
+    /// @param player El jugador que ha muerto.
     public void PlayerDead(GameObject player) {
-        Debug.Log("-------------------------------------------------------------------------------------");
         Debug.Log("Recieved player " + player.name + " dead");
         if (player == player2)
         {
@@ -106,7 +99,6 @@ public class EventosPelea : MonoBehaviour
             if (vidasP2 <= 1)
             {
                 // Gana el jugador 1
-                Debug.Log("Player 1 wins111111111111111111111111111111111111111111111111111111");
                 ResetPlayers();
                 player1.GetComponent<Bunny_Agent>().HandleWinConditionReward();
                 player2.GetComponent<Doge_Agent>().HandleLostConditionPenalty();
@@ -127,7 +119,6 @@ public class EventosPelea : MonoBehaviour
             if (vidasP1 <= 1)
             {
                 //Gana el jugador 2
-                Debug.Log("Player 2 wins2222222222222222222222222222222222222222222222222222222222");
                 ResetPlayers();
                 player1.GetComponent<Bunny_Agent>().HandleLostConditionPenalty();
                 player2.GetComponent<Doge_Agent>().HandleWinConditionReward();
@@ -144,6 +135,7 @@ public class EventosPelea : MonoBehaviour
         }
     }
 
+    /// @brief Restablece las vidas y reaparece ambos jugadores.
     public void ResetPlayers() {
         vidasP1 = MaxVidas;
         vidasP2 = MaxVidas;
@@ -156,7 +148,9 @@ public class EventosPelea : MonoBehaviour
         SpawnPlayer(2);
     }
 
-    //Spawnea un jugador 
+    /// @brief Spawnea un jugador en su posición inicial.
+    ///
+    /// @param pNum Número del jugador (1 o 2).
     public void SpawnPlayer(int pNum) {
         Debug.Log($"Spawning player{pNum}");
         //Lo hago en un switch por si en un futuro hay más de 2 personajes
@@ -188,6 +182,10 @@ public class EventosPelea : MonoBehaviour
     }
 
 
+    /// @brief Convierte un número de vidas en su representación gráfica en la UI.
+    ///
+    /// @param n Cantidad de vidas restantes.
+    /// @return Una cadena con el símbolo de vida repetido según el número de vidas.
     public string RepresentarVidas(int n)
     {
         string res = "";
