@@ -1,32 +1,38 @@
+/// @file Atributos.cs
+/// @brief Clase para gestionar los atributos de un personaje en combate.
+///
+/// Esta clase maneja la vida, barra especial y otros atributos como ataque, defensa y velocidad.
+/// También controla la muerte del personaje y la interacción con el controlador de pelea.
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// @class Atributos
+/// @brief Gestiona los atributos del personaje y su estado en combate.
 public class Atributos : MonoBehaviour
 {
-    private bool imDead = false;
+    private bool imDead = false;    ///< Indica si el personaje ha muerto.
 
     [Header("Vida")]
-    public float maxHP = 100;
+    public float maxHP = 100;   ///< Vida máxima del personaje.
     [SerializeField]
-    private float hp;
+    private float hp;   ///< Vida actual del personaje.
 
     [Header("BarraEspecial")]
-    [SerializeField] private float esp;
-    //Cuanto se le rellena la barra por segundo pasivamente
-    public float generacionEspPasiva;
+    [SerializeField] private float esp; ///< Barra especial del personaje.
+    public float generacionEspPasiva;   ///< Cantidad de energía especial generada pasivamente por segundo.
 
-    
+
     [Header("Otros Stats")]
-    //Poner aqu� otros atributos como puede ser ataque, defensa, velocidad....
-    //Actualmente no sirven para nada
-    public float atk;       //Ataque
-    public float def;       //Defensa
-    public float vel;       //Velocidad
+    public float atk; ///< Ataque del personaje.
+    public float def; ///< Defensa del personaje.
+    public float vel; ///< Velocidad del personaje.
 
     [Header("Controlador general de la pelea")]
-    public EventosPelea controladorGeneral; 
+    public EventosPelea controladorGeneral; ///< Referencia al controlador de pelea.
 
+    /// @brief Inicializa los valores al inicio del juego.
     private void Start()
     {
         hp = maxHP;
@@ -34,12 +40,14 @@ public class Atributos : MonoBehaviour
         imDead = false;
     }
 
+    /// @brief Actualiza la barra especial y verifica si el personaje ha muerto.
     private void Update()
     {
         changeEsp(generacionEspPasiva * Time.deltaTime);
         if (hp <= 0 && !imDead) Kill();
     }
 
+    /// @brief Reinicia los atributos del personaje.
     public void Reset()
     {
         //Debug.Log("Resetting player " + gameObject.name);
@@ -47,44 +55,52 @@ public class Atributos : MonoBehaviour
         hp = maxHP;
     }
 
-    //La vida solo es accesible mediante funciones para controlar cuando se modifica
-    //Modifica la vida del personaje
-    public bool changeHP(float x) {
+    /// @brief Modifica la vida del personaje.
+    /// @param x Cantidad a modificar (positiva o negativa).
+    /// @return Devuelve si el personaje ha muerto.
+    public bool changeHP(float x) 
+    {
         if (hp > 0) hp += x;
         //Si hp <= 0 el personaje muere
         else Kill();
 
         return imDead;
     }
-    //Devuelve la vida
-    public float getHP() {
+
+    /// @brief Devuelve la vida actual del personaje.
+    /// @return Vida actual del personaje.
+    public float getHP() 
+    {
         return hp;
     }
-    public void setHP(float x) {
+
+    /// @brief Establece un nuevo valor de vida.
+    /// @param x Nueva cantidad de vida.
+    public void setHP(float x)
+    {
         hp = x;
     }
 
-    //Protejemos la barra especial por el mismo motivo que antes
-    public void changeEsp(float x) {
+    /// @brief Modifica la barra especial del personaje.
+    /// @param x Cantidad a modificar (positiva o negativa).
+    public void changeEsp(float x) 
+    {
         esp += x;
     }
 
+    /// @brief Establece un nuevo valor en la barra especial.
+    /// @param x Nueva cantidad de barra especial
     public float getEsp() {
         return esp;
     }
     public void setEsp(float x) {
         esp = x;    
     }
-    //Cuando muere el personaje se llama esta munci�n (siempre que se destruye el objeto)
-    // private void OnDestroy()
-    // {
-    //     if (controladorGeneral != null) controladorGeneral.GetComponent<EventosPelea>().PlayerDead(this.gameObject);
-    // }
 
+    /// @brief Maneja la muerte del personaje.
     public void Kill() {
         if (imDead) return;
         imDead = true;
-        //Debug.Log("Player DEADDDD " + gameObject.name);
         hp = 0;
         if (controladorGeneral != null) controladorGeneral.PlayerDead(this.gameObject);
 

@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/// @file Doge_Agent.cs
+/// @brief Clase que representa un agente de IA en Unity ML-Agents.
+///
+/// Esta clase define el comportamiento de un agente controlado por ML-Agents,
+/// incluyendo movimiento, ataques y recompensas.
+
+
+using System.Collections;
 using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
@@ -6,12 +13,13 @@ using Unity.MLAgents.Sensors;
 using UnityEngine;
 using System;
 
-
+/// @class Doge_Agent
+/// @brief Implementa un agente de ML-Agents con mecánicas de combate y movimiento.
 public class Doge_Agent : Agent
 {
-    [SerializeField] private GameObject enemy;
-    [SerializeField] private float speedFactor = 1.0f;
-    [SerializeField] private float movementSpeed = 100.0f;
+    [SerializeField] private GameObject enemy;   ///< Referencia al enemigo en la escena.
+    [SerializeField] private float speedFactor = 1.0f;  ///< Factor de velocidad de movimiento.
+    [SerializeField] private float movementSpeed = 100.0f;  ///< Velocidad de movimiento del agente.
 
     [Header("SFX")] public SFXScript sfx;
     [SerializeField] public Animator agentAnimator;
@@ -22,18 +30,18 @@ public class Doge_Agent : Agent
     [SerializeField] public float gpared = 7.0f;
 
     [Header("Salto")]
-    public float fuerzasalto = 4000f;
-    public int nsaltos = 0;
-    public int saltostotales = 2;
-    private bool canJump = true;
-    public float stiempo = 0.3f;
-    public float timeRate = 2f;
+    public float fuerzasalto = 4000f;   ///< Fuerza aplicada al saltar.
+    public int nsaltos = 0;             ///< Contador de saltos realizados.
+    public int saltostotales = 2;       ///< Número total de saltos permitidos.
+    private bool canJump = true;        ///< Indica si el agente puede saltar.
+    public float stiempo = 0.3f;        ///< Tiempo de inactividad tras un salto.
+    public float timeRate = 2f;         ///< Ratio de tiempo entre saltos.
 
     [Header("Golpes")]
-    public float td = 0.3f;
-    public float tf = 0.3f;
-    public float te = 0.5f;
-    public bool damaged;
+    public float td = 0.3f;     ///< Duración del golpe normal.
+    public float tf = 0.3f;     ///< Duración del golpe fuerte.
+    public float te = 0.5f;     ///< Duración del ataque especial.
+    public bool damaged;        ///< Indica si el agente ha recibido daño.
 
     private Rigidbody2D rb;
     private float gravity;
@@ -43,6 +51,7 @@ public class Doge_Agent : Agent
     private Atributos atributos;
     private float velocityY = 0f;
 
+    /// @brief Devuelve si el agente está mirando a la derecha.
     public bool LookingToTheRigh {  get => lookingToTheRight; }
 
     Dictionary<int, Action> movementActions = new Dictionary<int, Action>();
@@ -59,13 +68,13 @@ public class Doge_Agent : Agent
 
         currentHealth = atributos.getHP();
 
-        // Mapeos de los diferentes outputs de movimiento del agente a acci�n
+        // Mapeo de acciones de movimiento.
         movementActions.Add(0, DoNotMove);
         movementActions.Add(1, MoveRight);
         movementActions.Add(2, MoveLeft);
         movementActions.Add(3, Jump);
 
-        // Mapeos de los diferentes outputs de ataque del agente a acci�n
+        // Mapeo de acciones de ataque.
         attackActions.Add(0, () => { /* Accion vacia: no atacar */ });
         attackActions.Add(1, Punch);
         attackActions.Add(2, PunchF);
@@ -106,16 +115,15 @@ public class Doge_Agent : Agent
         agentAnimator.SetFloat("VSpeed", rb.velocity.y);
     }
 
+    /// @brief Reinicia el episodio cuando se inicia o termina.
     public override void OnEpisodeBegin()
     {
-        // Que hacer cuando se empieza el juego o se llama a EndEpisode()
-
-        // Reset posicion, salud y vidas
         //transform.position = new Vector3(18.2f, 12.6f, 0);
         atributos.setHP(atributos.maxHP);
         atributos.setEsp(0);
     }
 
+    /// @brief Recopila observaciones del entorno para el agente.
     public override void CollectObservations(VectorSensor sensor)
     {
         // Saber donde estoy
@@ -146,6 +154,7 @@ public class Doge_Agent : Agent
         sensor.AddObservation(canJump);
     }
 
+    /// @brief Maneja las acciones del agente.
     public override void OnActionReceived(ActionBuffers actions)
     {
         movementAction = actions.DiscreteActions[0];
@@ -276,7 +285,7 @@ public class Doge_Agent : Agent
     }
 
 
-    /************ DETECTA COLISIONES ************/
+    /// @brief Maneja las colisiones con el suelo y las paredes.
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.tag == "Ground" || collision.collider.tag == "Pared")
@@ -289,6 +298,8 @@ public class Doge_Agent : Agent
             }
         }
     }
+
+    /// @brief Maneja la salida de colisión con una pared.
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider.tag == "Pared")
@@ -304,8 +315,7 @@ public class Doge_Agent : Agent
         HandleGotHitPenalty();
     }
 
-    /************************ HANLDERS DE EVENTOS Y SISTEMA DE RECOMPENSAS ************************/
-
+    /// @brief Recompensas y penalizaciones.
     /************ RECOMPENSAS ************/
     public void HandleHitEnemyReward()
     {
