@@ -44,17 +44,17 @@ public class Menu : MonoBehaviour
     {
         // Avtivar la pantalla de carga 
 
-        pantallaCarga.gameObject.SetActive(true);
+        //pantallaCarga.gameObject.SetActive(true);
 
-        fondo.gameObject.SetActive(false);
+        //fondo.gameObject.SetActive(false);
 
-        botones.gameObject.SetActive(false);
+        //botones.gameObject.SetActive(false);
     }
 
     /// @brief Carga la escena del primer nivel del juego.
     public void Jugar()
     {
-        SceneManager.LoadScene("Escenario1");
+        SceneManager.LoadScene("Escenario_Agents");
     }
 
     /// @brief Cierra la aplicación.
