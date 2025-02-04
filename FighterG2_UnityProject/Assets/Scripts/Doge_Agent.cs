@@ -39,9 +39,11 @@ public class Doge_Agent : Agent
     private float gravity;
     private int movementAction;
     private int attackAction;
-    private bool lookingToTheRight = true;
+    private bool lookingToTheRight = false;
     private Atributos atributos;
     private float velocityY = 0f;
+
+    public bool LookingToTheRigh {  get => lookingToTheRight; }
 
     Dictionary<int, Action> movementActions = new Dictionary<int, Action>();
     Dictionary<int, Action> attackActions = new Dictionary<int, Action>();
@@ -62,7 +64,6 @@ public class Doge_Agent : Agent
         movementActions.Add(1, MoveRight);
         movementActions.Add(2, MoveLeft);
         movementActions.Add(3, Jump);
-        //movementActions.Add(4, MovementTestFunction);
 
         // Mapeos de los diferentes outputs de ataque del agente a acci�n
         attackActions.Add(0, () => { /* Accion vacia: no atacar */ });
@@ -110,7 +111,7 @@ public class Doge_Agent : Agent
         // Que hacer cuando se empieza el juego o se llama a EndEpisode()
 
         // Reset posicion, salud y vidas
-        transform.position = new Vector3(18.2f, 12.6f, 0);
+        //transform.position = new Vector3(18.2f, 12.6f, 0);
         atributos.setHP(atributos.maxHP);
         atributos.setEsp(0);
     }
@@ -118,10 +119,22 @@ public class Doge_Agent : Agent
     public override void CollectObservations(VectorSensor sensor)
     {
         // Saber donde estoy
-        sensor.AddObservation(transform.position);
+        sensor.AddObservation(transform.localPosition);
 
         // Saber donde esta mi enemigo
-        sensor.AddObservation(enemy.transform.position);
+        sensor.AddObservation(enemy.transform.localPosition);
+
+        // Mi vida
+        sensor.AddObservation(atributos.getHP());
+
+        // Su vida
+        sensor.AddObservation(enemy.GetComponent<Atributos>().getHP());
+
+        // Mi Orientacion
+        sensor.AddObservation(lookingToTheRight);
+
+        // Su Orientacion
+        sensor.AddObservation(enemy.GetComponent<Bunny_Agent>().LookingToTheRigh);
 
         // Saber cuantos saltos puedo hacer
         sensor.AddObservation(saltostotales);
@@ -297,7 +310,7 @@ public class Doge_Agent : Agent
     public void HandleHitEnemyReward()
     {
         // Si golpeamos al enemigo
-        SetReward(10f);
+        SetReward(200f);
     }
 
     public void HandleKillEnemyReward()
